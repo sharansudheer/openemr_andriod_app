@@ -155,3 +155,16 @@ class EmployeeController {
 		repository.deleteById(id);
 	}
 }
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+@GetMapping("/current-weather")
+public class RestController {
+	public String getCurrentWeather(Model model) {
+        CurrentWeather currentWeather = new CurrentWeather("Clear", BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN);
+        model.addAttribute("currentWeather", currentWeather);
+        return "current-weather;
+	
+	}
+}
