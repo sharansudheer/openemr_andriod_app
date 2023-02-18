@@ -39,6 +39,10 @@ public class AuthResponse {
 	public void setScope(String scope) {
 		this.scope = scope;
 	}
+	public Object getStatusCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 	
 }
