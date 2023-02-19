@@ -254,3 +254,20 @@ ResponseEntity<String> response = restTemplate.postForEntity(endpoint, entity, S
 
 System.out.println(response.getBody());
       */
+
+
+
+
+      /*
+       You can create a FormData object and use its add method to add the key-value pair for "Scope" and its value. Since the value has special characters such as space and '%', 
+       you should encode the value using URL encoding. Here is an example code snippet:
+       
+       Note that you need to 
+       import java.net.URLEncoder and java.nio.charset.StandardCharsets.
+       */
+/* 
+      FormData formData = new FormData();
+String scopeValue = "openid offline_access api:port api:fhir patient/encounter.read patient/patient.read patient/AllergyIntolerance.read patient/CareTeam.read patient/Condition.read patient/Coverage.read patient/Encounter.read patient/Immunization.read patient/Medication.read patient/MedicationRequest.read patient/Observation.read patient/Patient.read patient/Procedure.read";
+formData.add("Scope", URLEncoder.encode(scopeValue, StandardCharsets.UTF_8));
+
+*/
