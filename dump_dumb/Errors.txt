@@ -1,0 +1,361 @@
+1st run at 11:37pm, 19/2/23
+
+
+23:37:06.697 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+23:37:06.706 [main] DEBUG io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+23:37:06.707 [main] DEBUG io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+23:37:06.707 [main] DEBUG io.netty.util.internal.PlatformDependent0 - Java version: 19
+23:37:06.708 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+23:37:06.709 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+23:37:06.709 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.storeFence: available
+23:37:06.709 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+23:37:06.709 [main] DEBUG io.netty.util.internal.PlatformDependent0 - direct buffer constructor: unavailable: Reflective setAccessible(true) disabled
+23:37:06.709 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+23:37:06.710 [main] DEBUG io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable: class io.netty.util.internal.PlatformDependent0$7 cannot access class jdk.internal.misc.Unsafe (in module java.base) because module java.base does not export jdk.internal.misc to unnamed module @6f3b5d16
+23:37:06.710 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): unavailable
+23:37:06.710 [main] DEBUG io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+23:37:06.717 [main] DEBUG io.netty.util.internal.PlatformDependent - maxDirectMemory: 4294967296 bytes (maybe)
+23:37:06.717 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: /var/folders/n2/lpjyh1ks7blfq_w25rbpd8bw0000gn/T (java.io.tmpdir)
+23:37:06.717 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+23:37:06.718 [main] DEBUG io.netty.util.internal.PlatformDependent - Platform: MacOS
+23:37:06.718 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: -1 bytes
+23:37:06.718 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+23:37:06.719 [main] DEBUG io.netty.util.internal.CleanerJava9 - java.nio.ByteBuffer.cleaner(): available
+23:37:06.719 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+23:37:06.731 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+23:37:06.731 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+23:37:06.744 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+23:37:06.744 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+23:37:06.880 [main] DEBUG io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+23:37:06.880 [main] DEBUG io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+23:37:06.886 [main] DEBUG io.netty.util.NetUtilInitializations - Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1%lo0)
+23:37:06.886 [main] DEBUG io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file /proc/sys/net/core/somaxconn. Default: 128
+23:37:06.892 [main] DEBUG org.springframework.web.reactive.function.client.ExchangeFunctions - [241e8ea6] HTTP POST https://ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/oauth2/default/token
+23:37:06.897 [main] DEBUG io.netty.handler.ssl.OpenSsl - netty-tcnative not in the classpath; OpenSslEngine will be unavailable.
+23:37:06.969 [main] DEBUG io.netty.handler.ssl.JdkSslContext - Default protocols (JDK): [TLSv1.3, TLSv1.2] 
+23:37:06.969 [main] DEBUG io.netty.handler.ssl.JdkSslContext - Default cipher suites (JDK): [TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_AES_128_GCM_SHA256, TLS_AES_256_GCM_SHA384]
+23:37:06.975 [main] DEBUG reactor.netty.tcp.TcpResources - [http] resources will use the default LoopResources: DefaultLoopResources {prefix=reactor-http, daemon=true, selectCount=8, workerCount=8}
+23:37:06.975 [main] DEBUG reactor.netty.tcp.TcpResources - [http] resources will use the default ConnectionProvider: reactor.netty.resources.DefaultPooledConnectionProvider@4108fa66
+23:37:06.975 [main] DEBUG reactor.netty.resources.DefaultLoopIOUring - Default io_uring support : false
+23:37:06.979 [main] DEBUG reactor.netty.resources.DefaultLoopEpoll - Default Epoll support : false
+23:37:06.979 [main] DEBUG reactor.netty.resources.DefaultLoopKQueue - Default KQueue support : false
+23:37:06.980 [main] DEBUG io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 16
+23:37:06.985 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+23:37:06.985 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+23:37:06.987 [main] DEBUG io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+23:37:06.993 [main] DEBUG io.netty.resolver.DefaultHostsFileEntriesResolver - -Dio.netty.hostsFileRefreshInterval: 0
+23:37:06.995 [main] DEBUG io.netty.util.internal.NativeLibraryLoader - -Dio.netty.native.workdir: /var/folders/n2/lpjyh1ks7blfq_w25rbpd8bw0000gn/T (io.netty.tmpdir)
+23:37:06.995 [main] DEBUG io.netty.util.internal.NativeLibraryLoader - -Dio.netty.native.deleteLibAfterLoading: true
+23:37:06.995 [main] DEBUG io.netty.util.internal.NativeLibraryLoader - -Dio.netty.native.tryPatchShadedId: true
+23:37:06.995 [main] DEBUG io.netty.util.internal.NativeLibraryLoader - -Dio.netty.native.detectNativeLibraryDuplicates: true
+23:37:07.000 [main] ERROR io.netty.resolver.dns.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:79)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at io.netty.resolver.dns.DnsServerAddressStreamProviders.<clinit>(DnsServerAddressStreamProviders.java:64)
+	at io.netty.resolver.dns.DnsNameResolverBuilder.<init>(DnsNameResolverBuilder.java:60)
+	at reactor.netty.transport.NameResolverProvider.newNameResolverGroup(NameResolverProvider.java:501)
+	at reactor.netty.tcp.TcpResources.getOrCreateDefaultResolver(TcpResources.java:315)
+	at reactor.netty.http.HttpResources.getOrCreateDefaultResolver(HttpResources.java:162)
+	at reactor.netty.http.client.HttpClientConfig.defaultAddressResolverGroup(HttpClientConfig.java:392)
+	at reactor.netty.transport.ClientTransportConfig.resolverInternal(ClientTransportConfig.java:224)
+	at reactor.netty.http.client.HttpClientConfig.resolverInternal(HttpClientConfig.java:446)
+	at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect.lambda$subscribe$0(HttpClientConnect.java:265)
+	at reactor.core.publisher.MonoCreate.subscribe(MonoCreate.java:58)
+	at reactor.core.publisher.FluxRetryWhen.subscribe(FluxRetryWhen.java:77)
+	at reactor.core.publisher.MonoRetryWhen.subscribeOrReturn(MonoRetryWhen.java:46)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:57)
+	at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect.subscribe(HttpClientConnect.java:272)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4490)
+	at reactor.core.publisher.Mono.block(Mono.java:1741)
+	at com.test.apitest.MainCode.main(MainCode.java:74)
+Caused by: java.lang.UnsatisfiedLinkError: failed to load the required native library
+	at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.ensureAvailability(MacOSDnsServerAddressStreamProvider.java:110)
+	at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.<init>(MacOSDnsServerAddressStreamProvider.java:120)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	... 21 common frames omitted
+Caused by: java.lang.UnsatisfiedLinkError: could not load a native library: netty_resolver_dns_native_macos_aarch_64
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:239)
+	at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.loadNativeLibrary(MacOSDnsServerAddressStreamProvider.java:92)
+	at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.<clinit>(MacOSDnsServerAddressStreamProvider.java:77)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at io.netty.resolver.dns.DnsServerAddressStreamProviders$1.run(DnsServerAddressStreamProviders.java:50)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:318)
+	at io.netty.resolver.dns.DnsServerAddressStreamProviders.<clinit>(DnsServerAddressStreamProviders.java:46)
+	... 18 common frames omitted
+	Suppressed: java.lang.UnsatisfiedLinkError: could not load a native library: netty_resolver_dns_native_macos
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:239)
+		at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.loadNativeLibrary(MacOSDnsServerAddressStreamProvider.java:95)
+		... 25 common frames omitted
+	Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_resolver_dns_native_macos.jnilib
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:181)
+		... 26 common frames omitted
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_resolver_dns_native_macos in java.library.path: /Users/sharansudheer/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+			at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2444)
+			at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:848)
+			at java.base/java.lang.System.loadLibrary(System.java:2047)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:391)
+			at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:161)
+			... 26 common frames omitted
+			Suppressed: java.lang.UnsatisfiedLinkError: no netty_resolver_dns_native_macos in java.library.path: /Users/sharansudheer/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+				at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2444)
+				at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:848)
+				at java.base/java.lang.System.loadLibrary(System.java:2047)
+				at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+				at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+				at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+				at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:425)
+				at java.base/java.security.AccessController.doPrivileged(AccessController.java:318)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:417)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:383)
+				... 27 common frames omitted
+Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_resolver_dns_native_macos_aarch_64.jnilib
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:181)
+	... 26 common frames omitted
+	Suppressed: java.lang.UnsatisfiedLinkError: no netty_resolver_dns_native_macos_aarch_64 in java.library.path: /Users/sharansudheer/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+		at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2444)
+		at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:848)
+		at java.base/java.lang.System.loadLibrary(System.java:2047)
+		at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+		at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:391)
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:161)
+		... 26 common frames omitted
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_resolver_dns_native_macos_aarch_64 in java.library.path: /Users/sharansudheer/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+			at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2444)
+			at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:848)
+			at java.base/java.lang.System.loadLibrary(System.java:2047)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+			at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+			at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:425)
+			at java.base/java.security.AccessController.doPrivileged(AccessController.java:318)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:417)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:383)
+			... 27 common frames omitted
+23:37:07.003 [main] DEBUG reactor.netty.resources.PooledConnectionProvider - Creating a new [http] client pool [PoolFactory{evictionInterval=PT0S, leasingStrategy=fifo, maxConnections=500, maxIdleTime=-1, maxLifeTime=-1, metricsEnabled=false, pendingAcquireMaxCount=1000, pendingAcquireTimeout=45000}] for [ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/<unresolved>:443]
+23:37:07.018 [main] DEBUG io.netty.channel.DefaultChannelId - -Dio.netty.processId: 23534 (auto-detected)
+23:37:07.018 [main] DEBUG io.netty.channel.DefaultChannelId - -Dio.netty.machineId: 1c:57:dc:ff:fe:4b:fa:b6 (auto-detected)
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 16
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 16
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 9
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 4194304
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: false
+23:37:07.024 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+23:37:07.027 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+23:37:07.027 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+23:37:07.027 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+23:37:07.036 [reactor-http-nio-2] DEBUG reactor.netty.resources.PooledConnectionProvider - [0cae82ff] Created a new pooled channel, now: 0 active connections, 0 inactive connections and 0 pending acquire requests.
+23:37:07.043 [reactor-http-nio-2] DEBUG reactor.netty.tcp.SslProvider - [0cae82ff] SSL enabled using engine SSLEngine[hostname=ec2-13-232-61-19.ap-south-1.compute.amazonaws.com, port=443, Session(1676830027039|SSL_NULL_WITH_NULL_NULL)] and SNI ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/<unresolved>:443
+23:37:07.048 [reactor-http-nio-2] DEBUG io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+23:37:07.048 [reactor-http-nio-2] DEBUG io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+23:37:07.048 [reactor-http-nio-2] DEBUG io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@251112f8
+23:37:07.052 [reactor-http-nio-2] DEBUG reactor.netty.transport.TransportConfig - [0cae82ff] Initialized pipeline DefaultChannelPipeline{(reactor.left.sslHandler = io.netty.handler.ssl.SslHandler), (reactor.left.sslReader = reactor.netty.tcp.SslProvider$SslReadHandler), (reactor.left.httpCodec = io.netty.handler.codec.http.HttpClientCodec), (reactor.left.httpDecompressor = io.netty.handler.codec.http.HttpContentDecompressor), (reactor.right.reactiveBridge = reactor.netty.channel.ChannelOperationsHandler)}
+23:37:07.064 [reactor-http-nio-1] DEBUG io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@3a2de7ce
+23:37:07.064 [reactor-http-nio-1] DEBUG io.netty.resolver.dns.DnsQueryContext - [id: 0xe8c68c20] WRITE: UDP, [59604: /[fe80:0:0:0:499:bbff:fe2d:da64%en0]:53], DefaultDnsQuestion(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. IN A)
+23:37:07.065 [reactor-http-nio-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+23:37:07.065 [reactor-http-nio-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+23:37:07.065 [reactor-http-nio-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.chunkSize: 32
+23:37:07.065 [reactor-http-nio-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.blocking: false
+23:37:07.069 [reactor-http-nio-1] DEBUG io.netty.resolver.dns.DnsQueryContext - [id: 0xe8c68c20] WRITE: UDP, [26634: /[fe80:0:0:0:499:bbff:fe2d:da64%en0]:53], DefaultDnsQuestion(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. IN AAAA)
+23:37:07.081 [reactor-http-nio-1] DEBUG io.netty.resolver.dns.DnsNameResolver - [id: 0xe8c68c20] RECEIVED: UDP [59604: /[fe80:0:0:0:499:bbff:fe2d:da64%11]:53], DatagramDnsResponse(from: /[fe80:0:0:0:499:bbff:fe2d:da64%11]:53, to: /[0:0:0:0:0:0:0:0]:53882, 59604, QUERY(0), NoError(0), RD RA)
+	DefaultDnsQuestion(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. IN A)
+	DefaultDnsRawRecord(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. 4368 IN A 4B)
+	DefaultDnsRawRecord(OPT flags:0 udp:4096 0B)
+23:37:07.083 [reactor-http-nio-2] DEBUG reactor.netty.transport.TransportConnector - [0cae82ff] Connecting to [ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/13.232.61.19:443].
+23:37:07.083 [reactor-http-nio-1] DEBUG io.netty.resolver.dns.DnsNameResolver - [id: 0xe8c68c20] RECEIVED: UDP [26634: /[fe80:0:0:0:499:bbff:fe2d:da64%11]:53], DatagramDnsResponse(from: /[fe80:0:0:0:499:bbff:fe2d:da64%11]:53, to: /[0:0:0:0:0:0:0:0]:53882, 26634, QUERY(0), NoError(0), RD RA)
+	DefaultDnsQuestion(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. IN AAAA)
+	DefaultDnsRawRecord(ec2-13-232-61-19.ap-south-1.compute.amazonaws.com. 4368 IN AAAA 16B)
+	DefaultDnsRawRecord(OPT flags:0 udp:4096 0B)
+23:37:07.160 [reactor-http-nio-2] DEBUG reactor.netty.resources.DefaultPooledConnectionProvider - [0cae82ff, L:/172.20.10.8:50520 - R:ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/13.232.61.19:443] Registering pool release on close event for channel
+23:37:07.160 [reactor-http-nio-2] DEBUG reactor.netty.resources.PooledConnectionProvider - [0cae82ff, L:/172.20.10.8:50520 - R:ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/13.232.61.19:443] Channel connected, now: 1 active connections, 0 inactive connections and 0 pending acquire requests.
+Exception in thread "main" org.springframework.web.reactive.function.client.WebClientRequestException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target; nested exception is javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:141)
+23:37:07.310 [reactor-http-nio-2] WARN reactor.netty.http.client.HttpClientConnect - [0cae82ff, L:/172.20.10.8:50520 - R:ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/13.232.61.19:443] The connection observed an error
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:130)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:371)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:314)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:309)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1351)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1226)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1169)
+	at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396)
+	at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask$DelegatedAction.run(SSLEngineImpl.java:1273)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask$DelegatedAction.run(SSLEngineImpl.java:1260)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask.run(SSLEngineImpl.java:1205)
+	at io.netty.handler.ssl.SslHandler.runDelegatedTasks(SslHandler.java:1549)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1395)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1236)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:468)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:388)
+	at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:271)
+	at java.base/sun.security.validator.Validator.validate(Validator.java:256)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:285)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:144)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1329)
+	... 31 common frames omitted
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141)
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126)
+	at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:383)
+	... 36 common frames omitted
+	Suppressed: The stacktrace has been enhanced by Reactor, refer to additional information below: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to POST null [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:141)
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:204)
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:225)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:274)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:415)
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onNext(FluxConcatMap.java:251)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.EmitterProcessor.drain(EmitterProcessor.java:537)
+		at reactor.core.publisher.EmitterProcessor.tryEmitNext(EmitterProcessor.java:343)
+		at reactor.core.publisher.SinkManySerialized.tryEmitNext(SinkManySerialized.java:100)
+		at reactor.core.publisher.InternalManySink.emitNext(InternalManySink.java:27)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:190)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201)
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:307)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onUncaughtException(DefaultPooledConnectionProvider.java:210)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnection.onUncaughtException(DefaultPooledConnectionProvider.java:464)
+		at reactor.netty.channel.ChannelOperationsHandler.exceptionCaught(ChannelOperationsHandler.java:147)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:346)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:325)
+		at io.netty.channel.AbstractChannelHandlerContext.fireExceptionCaught(AbstractChannelHandlerContext.java:317)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireExceptionCaught(CombinedChannelDuplexHandler.java:424)
+		at io.netty.channel.ChannelHandlerAdapter.exceptionCaught(ChannelHandlerAdapter.java:92)
+		at io.netty.channel.CombinedChannelDuplexHandler$1.fireExceptionCaught(CombinedChannelDuplexHandler.java:145)
+		at io.netty.channel.ChannelInboundHandlerAdapter.exceptionCaught(ChannelInboundHandlerAdapter.java:143)
+		at io.netty.channel.CombinedChannelDuplexHandler.exceptionCaught(CombinedChannelDuplexHandler.java:231)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:346)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:325)
+		at io.netty.channel.AbstractChannelHandlerContext.fireExceptionCaught(AbstractChannelHandlerContext.java:317)
+		at reactor.netty.tcp.SslProvider$SslReadHandler.userEventTriggered(SslProvider.java:850)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeUserEventTriggered(AbstractChannelHandlerContext.java:400)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeUserEventTriggered(AbstractChannelHandlerContext.java:376)
+		at io.netty.channel.AbstractChannelHandlerContext.fireUserEventTriggered(AbstractChannelHandlerContext.java:368)
+		at io.netty.handler.ssl.SslHandler.handleUnwrapThrowable(SslHandler.java:1260)
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1241)
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285)
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:468)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:1589)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99)
+		at reactor.core.publisher.Mono.block(Mono.java:1742)
+		at com.test.apitest.MainCode.main(MainCode.java:74)
+Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:130)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:371)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:314)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:309)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1351)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1226)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1169)
+	at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396)
+	at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask$DelegatedAction.run(SSLEngineImpl.java:1273)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask$DelegatedAction.run(SSLEngineImpl.java:1260)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.base/sun.security.ssl.SSLEngineImpl$DelegatedTask.run(SSLEngineImpl.java:1205)
+	at io.netty.handler.ssl.SslHandler.runDelegatedTasks(SslHandler.java:1549)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1395)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1236)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:529)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:468)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:388)
+	at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:271)
+	at java.base/sun.security.validator.Validator.validate(Validator.java:256)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:285)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:144)
+	at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1329)
+	... 31 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141)
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126)
+	at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:383)
+	... 36 more
+
+///////////
