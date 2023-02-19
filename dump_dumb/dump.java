@@ -58,7 +58,7 @@ public RestTemplate restTemplate() {
 
  */
 
-
+/*
 
 public class AuthResponse {
     private String access_token;
@@ -218,3 +218,56 @@ https://stackoverflow.com/questions/7890661/how-can-i-create-oauth-2-username-pa
 
 
      */
+
+
+     // Test of Main Data Transfer, POST Request
+
+     /*
+      * 
+      RestTemplate restTemplate = new RestTemplate();
+
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_JSON);
+headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+Map<String, Object> requestBody = new LinkedHashMap<>();
+requestBody.put("title", "Mr");
+requestBody.put("fname", "Foo");
+requestBody.put("mname", "");
+requestBody.put("lname", "Bar");
+requestBody.put("street", "456 Tree Lane");
+requestBody.put("postal_code", "08642");
+requestBody.put("city", "FooTown");
+requestBody.put("state", "FL");
+requestBody.put("country_code", "US");
+requestBody.put("phone_contact", "123-456-7890");
+requestBody.put("DOB", "1992-02-02");
+requestBody.put("sex", "Male");
+requestBody.put("race", "");
+requestBody.put("ethnicity", "");
+
+HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+
+URI endpoint = URI.create("https://four.openemr.io/a/openemr/apis/default/api/patient");
+
+ResponseEntity<String> response = restTemplate.postForEntity(endpoint, entity, String.class);
+
+System.out.println(response.getBody());
+      */
+
+
+
+
+      /*
+       You can create a FormData object and use its add method to add the key-value pair for "Scope" and its value. Since the value has special characters such as space and '%', 
+       you should encode the value using URL encoding. Here is an example code snippet:
+       
+       Note that you need to 
+       import java.net.URLEncoder and java.nio.charset.StandardCharsets.
+       */
+/* 
+      FormData formData = new FormData();
+String scopeValue = "openid offline_access api:port api:fhir patient/encounter.read patient/patient.read patient/AllergyIntolerance.read patient/CareTeam.read patient/Condition.read patient/Coverage.read patient/Encounter.read patient/Immunization.read patient/Medication.read patient/MedicationRequest.read patient/Observation.read patient/Patient.read patient/Procedure.read";
+formData.add("Scope", URLEncoder.encode(scopeValue, StandardCharsets.UTF_8));
+
+*/
