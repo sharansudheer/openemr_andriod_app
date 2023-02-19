@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -22,16 +23,41 @@ public class MainCode {
 		try {
 		    // make the API request
 			WebClient webClient = WebClient.builder()
-				    .baseUrl("https://ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/oauth2/default/login")
+				    .baseUrl("https://ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/oauth2/default/token")
 				    .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 				    .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + Base64.getEncoder().encodeToString("client_id:client_secret".getBytes(StandardCharsets.UTF_8)))
 				    .build();
+			String scopeValue = "openid offline_access api:oemr api:fhir " +
+				    "user/allergy.read user/allergy.write " +
+				    "user/appointment.read user/appointment.write " +
+				    "user/dental_issue.read user/dental_issue.write " +
+				    "user/document.read user/document.write " +
+				    "user/drug.read user/encounter.read user/encounter.write " +
+				    "user/facility.read user/facility.write " +
+				    "user/immunization.read user/insurance.read user/insurance.write " +
+				    "user/insurance_company.read user/insurance_company.write user/insurance_type.read " +
+				    "user/list.read user/medical_problem.read user/medical_problem.write " +
+				    "user/medication.read user/medication.write user/message.write " +
+				    "user/patient.read user/patient.write user/practitioner.read " +
+				    "user/practitioner.write user/prescription.read user/procedure.read " +
+				    "user/soap_note.read user/soap_note.write user/surgery.read " +
+				    "user/surgery.write user/transaction.read user/transaction.write " +
+				    "user/vital.read user/vital.write user/AllergyIntolerance.read " +
+				    "user/CareTeam.read user/Condition.read user/Coverage.read " +
+				    "user/Encounter.read user/Immunization.read user/Location.read " +
+				    "user/Medication.read user/MedicationRequest.read user/Observation.read " +
+				    "user/Organization.read user/Organization.write user/Patient.read " +
+				    "user/Patient.write user/Practitioner.read user/Practitioner.write " +
+				    "user/PractitionerRole.read user/Procedure.read";
+			
 			MultiValueMap<String, String> formData = new LinkedMultiValueMap<String, String>();
 		    formData.add("grant_type", "password");
-		    formData.add("client_id", "my-trusted-client");
-		    formData.add("scope", "read");
-		    formData.add("username", "muhammed");
-		    formData.add("password", "1234");
+		    formData.add("client_id", "NNyB7CqS7df5Id16QY4H_27VJUk9zjQU2M1zVmDJ2Lo");
+		    formData.add("user_role", "users");
+		    
+		    formData.add("scope", URLEncoder.encode(scopeValue, StandardCharsets.UTF_8));
+		    formData.add("username", "admin");
+		    formData.add("password", "i-0006671ac595ee909");
 		    /*
 		         webClient.post(): This creates a POST request using the WebClient object named webClient.
     .body(BodyInserters.fromFormData(formData)): This sets the request body as form data. The formData object is converted to a MultiValueMap using the LinkedMultiValueMap implementation provided by Spring.
