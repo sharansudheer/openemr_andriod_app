@@ -271,3 +271,12 @@ String scopeValue = "openid offline_access api:port api:fhir patient/encounter.r
 formData.add("Scope", URLEncoder.encode(scopeValue, StandardCharsets.UTF_8));
 
 */
+
+/*
+grant_type: Its value is password. This field indicates the grant type of the authentication request. Here, it is password grant, which is used for authenticating users with a username and password.
+client_id: Its value is my-trusted-client. This field represents the client ID that the authorization server issues to the client.
+scope: Its value is read. This field represents the scope of the access request. Here, the scope is read, which means that the client is requesting read-only access to a protected resource.
+username: Its value is muhammed. This field represents the username of the user who is trying to authenticate.
+password: Its value is 1234. This field represents the password of the user who is trying to authenticate.
+
+*/
