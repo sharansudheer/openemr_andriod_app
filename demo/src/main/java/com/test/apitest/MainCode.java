@@ -1,7 +1,7 @@
 package com.test.apitest;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,19 +46,26 @@ In summary, the code sends a POST request to the server with the form data speci
 		    	    .retrieve()
 		    	    .bodyToMono(AuthResponse.class)
 		    	    .block();
+		    String accessToken = response.getAccessToken();
+		    System.out.println(accessToken);
 		} catch (HttpClientErrorException ex) {
 		    if (ex.getStatusCode() == HttpStatus.UNAUTHORIZED) {
 		        // handle unauthorized request
+		    	System.out.println("UNAUTHORIZED, 401");
 		    } else if (ex.getStatusCode() == HttpStatus.BAD_REQUEST) {
 		        // handle bad request
+		    	System.out.println("BAD_REQUEST, 400");
 		    } else {
 		        // handle other client errors
+		    	System.out.println("Other Client Error, 4--");
 		    }
 		} catch (HttpServerErrorException ex) {
 		    if (ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
 		        // handle internal server error
+		    	System.out.println("INTERNAL_SERVER_ERROR, 500");
 		    } else {
 		        // handle other server errors
+		    	System.out.println("Other server errors, 5--");
 		    }
 		}
 	
@@ -70,9 +77,15 @@ In summary, the code sends a POST request to the server with the form data speci
 	String url = "https://ec2-13-232-61-19.ap-south-1.compute.amazonaws.com/oauth2/default/login";
 
 	// execute the request and get the response
-	ResponseEntity<String> response2 = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
-
 	
+	ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+
+	// get the response body as a String
+	String responseBody = responseEntity.getBody();
+
+	// print the response body
+	System.out.println(responseBody);
+
 	}
 }
 

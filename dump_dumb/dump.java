@@ -52,6 +52,12 @@ public RestTemplate restTemplate() {
     return restTemplate;
 }
 
+/*
+ ResponseEntity<String> response2 = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+
+
+ */
+
 
 
 public class AuthResponse {
