@@ -289,10 +289,14 @@ formData.append("Scope", "openid offline_access api:oemr api:fhir user/allergy.r
 
 
 /*
- String scopeValue = "openid offline_access api:oemr api:fhir " +
-				    "user/allergy.read user/allergy.write " +
-				    "user/appointment.read user/appointment.write " +
-				    "user/dental_issue.read user/dental_issue.write " +
+ String scopeValue = "openid offline_access " + 
+                    "api:oemr api:fhir " +
+				    "user/allergy.read " +
+                    "user/allergy.write " +
+				    "user/appointment.read " +
+                    "user/appointment.write " +
+				    "user/dental_issue.read " +
+                    "user/dental_issue.write " +
 				    "user/document.read user/document.write " +
 				    "user/drug.read user/encounter.read user/encounter.write " +
 				    "user/facility.read user/facility.write " +
