@@ -231,8 +231,8 @@ https://stackoverflow.com/questions/7890661/how-can-i-create-oauth-2-username-pa
 
      /*
       * 
-      RestTemplate restTemplate = new RestTemplate();
 
+RestTemplate restTemplate = new RestTemplate();
 HttpHeaders headers = new HttpHeaders();
 headers.setContentType(MediaType.APPLICATION_JSON);
 headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -254,11 +254,8 @@ requestBody.put("race", "");
 requestBody.put("ethnicity", "");
 
 HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
-
 URI endpoint = URI.create("https://four.openemr.io/a/openemr/apis/default/api/patient");
-
 ResponseEntity<String> response = restTemplate.postForEntity(endpoint, entity, String.class);
-
 System.out.println(response.getBody());
       */
 
