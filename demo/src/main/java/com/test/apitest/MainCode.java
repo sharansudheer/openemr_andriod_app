@@ -26,15 +26,17 @@ import java.util.List;
 
 public class MainCode {
     public static void main(String[] args) {
-        try {
+        try { 
         	String accessToken = new Authorize().GetAccessToken();
         	RestTemplate restTemplate = new RestTemplate();
         	HttpHeaders headers = new HttpHeaders();
         	headers.setContentType(MediaType.APPLICATION_JSON);
 
-        	// Replace <your_bearer_token> with your actual bearer token
+        	System.out.println("the Access is " + accessToken);
+        	
+        	// Replace  with your actual bearer token
         	headers.setBearerAuth(accessToken);
-
+/*
         	JSONObject patientJson = new JSONObject();
         	patientJson.put("title", "Mr");
         	patientJson.put("fname", "Foo");
@@ -56,7 +58,7 @@ public class MainCode {
         	ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
         	System.out.println(response.getBody());
-
+*/
 
         } catch (HttpClientErrorException ex) {
             if (ex.getStatusCode() == HttpStatus.UNAUTHORIZED) {
