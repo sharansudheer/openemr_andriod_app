@@ -8,12 +8,12 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="160dp"
-        android:layout_height="57dp"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="232dp"
-        android:layout_marginBottom="460dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="456dp"
         android:focusable="true"
         android:hint="@string/enter_name"
         android:importantForAutofill="no"
@@ -25,12 +25,12 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_below="@+id/editText"
         android:layout_alignEnd="@+id/editText"
         android:layout_alignParentStart="true"
-        android:layout_marginEnd="184dp"
+        android:layout_marginEnd="44dp"
         android:ems="10"
         android:hint="@string/password"
         android:importantForAutofill="no"
@@ -42,12 +42,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
 
         android:layout_marginStart="16dp"
@@ -63,8 +63,8 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
 
         android:layout_marginBottom="240dp"
@@ -78,5 +78,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.922"
         app:layout_constraintStart_toEndOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:autoText="false"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/login_text"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

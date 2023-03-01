@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientDashboard">
+
     <ImageView
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        <!-- android:src="@drawable/dashbord_bacground" --> />
+        tools:ignore="ImageContrastCheck" />
+        <!-- android:src="@drawable/dashbord_bacground" -->
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -39,7 +41,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/lato_bold"
             android:text="Classify this transaction into a particular category"
-            android:textColor="@color/text_color_description"
+            android:textColor="#A1887F"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -86,17 +88,18 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="20dp"
-                        android:background="@drawable/general_img_background"
-
                         android:padding="25dp"
-                        android:src="@drawable/dashboard"
                         app:tint="#fff" />
+                    <!--
+                     android:background="@drawable/general_img_background"
+                      android:src="@drawable/dashboard"
+                     -->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_black"
-                        android:text="General"
+                        android:text="@string/general"
                         android:textColor="#257FC5"
                         android:textSize="22sp" />
                 </LinearLayout>
@@ -138,8 +141,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_black"
-                        android:text="Transport"
-                        android:textColor="#7159CF"
+                        android:text="@string/transport"
+                        android:textColor="#2196F3"
                         android:textSize="22sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -184,7 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_black"
-                        android:text="Entertainment"
+                        android:text="@string/entertainment"
                         android:textColor="#5569BF"
                         android:textSize="22sp" />
                 </LinearLayout>
@@ -215,11 +218,13 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="20dp"
-                        android:background="@drawable/grocery_img_background"
-                        android:padding="25dp"
-                        android:src="@drawable/groceries"
-                        app:tint="#fff" />
 
+                        android:padding="25dp"
+
+                        app:tint="#fff" />
+                    <!--
+                    android:background="@drawable/grocery_img_background"
+                    android:src="@drawable/groceries" -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
