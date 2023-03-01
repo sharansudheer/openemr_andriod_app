@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Main_Application"
         tools:targetApi="31">
         <activity
-            android:name=".PatientDashboard"
+            android:name=".MainPatientDashboard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

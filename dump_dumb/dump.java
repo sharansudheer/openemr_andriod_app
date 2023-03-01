@@ -407,8 +407,14 @@ JsonNode jsonNode = new ObjectMapper().readTree(response.getBody());
   */
 
  /*
+ import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
   
-    RestTemplate restTemplate = new RestTemplate();
+            RestTemplate restTemplate = new RestTemplate();
 
         	HttpHeaders headers = new HttpHeaders();
         	headers.setContentType(MediaType.APPLICATION_JSON);
@@ -425,4 +431,12 @@ JsonNode jsonNode = new ObjectMapper().readTree(response.getBody());
         	System.out.println(responseEntity.getBody());
 test  dump
 testing again
+
+<activity
+            android:name=".PatientDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
   */
