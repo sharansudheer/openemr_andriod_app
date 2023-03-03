@@ -439,4 +439,59 @@ testing again
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+
+
+    Android Developers
+    Docs
+    UI Guide
+
+Was this helpful?
+Specify the input method type
+
+Every text field expects a certain type of text input, such as an email address, phone number, or just plain text. So it's important that you specify the input type for each text field in your app so the system displays the appropriate soft input method (such as an on-screen keyboard).
+
+Beyond the type of buttons available with an input method, you should specify behaviors such as whether the input method provides spelling suggestions, capitalizes new sentences, and replaces the carriage return button with an action button such as a Done or Next. This lesson shows how to specify these characteristics.
+Specify the keyboard type
+
+You should always declare the input method for your text fields by adding the android:inputType attribute to the <EditText> element.
+
+Figure 1. The phone input type.
+
+For example, if you'd like an input method for entering a phone number, use the "phone" value:
+
+<EditText
+    android:id="@+id/phone"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/phone_hint"
+    android:inputType="phone" />
+
+Figure 2. The textPassword input type.
+
+Or if the text field is for a password, use the "textPassword" value so the text field conceals the user's input:
+
+<EditText
+    android:id="@+id/password"
+    android:hint="@string/password_hint"
+    android:inputType="textPassword"
+    ... />
+
+There are several possible values documented with the android:inputType attribute and some of the values can be combined to specify the input method appearance and additional behaviors.
+Enable spelling suggestions and other behaviors
+
+Figure 3. Adding textAutoCorrect provides auto-correction for misspellings.
+
+The android:inputType attribute allows you to specify various behaviors for the input method. Most importantly, if your text field is intended for basic text input (such as for a text message), you should enable auto spelling correction with the "textAutoCorrect" value.
+
+You can combine different behaviors and input method styles with the android:inputType attribute. For example, here's how to create a text field that capitalizes the first word of a sentence and also auto-corrects misspellings:
+
+<EditText
+    android:id="@+id/message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:inputType=
+        "textCapSentences|textAutoCorrect"
+    ... />
+
   */
