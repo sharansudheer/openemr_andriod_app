@@ -493,5 +493,10 @@ You can combine different behaviors and input method styles with the android:inp
     android:inputType=
         "textCapSentences|textAutoCorrect"
     ... />
+NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+        .setSmallIcon(R.drawable.notification_icon)
+        .setContentTitle(textTitle)
+        .setContentText(textContent)
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
   */
