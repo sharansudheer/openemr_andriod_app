@@ -6,14 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".MainPatientDashboard">
 
-    <FrameLayout
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginBottom="100dp"
+    <TableLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="#ffffff"
+        android:padding="16dp"
+        android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935">
 
-    </FrameLayout>
+        <TableRow>
+
+            <Button
+                android:id="@+id/appoint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/appointments"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/billing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/billing"
+                style="?android:attr/buttonBarButtonStyle" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/prescrip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/prescription"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/allergies"
+                style="?android:attr/buttonBarButtonStyle" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/appointment_summary"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_6"
+                style="?android:attr/buttonBarButtonStyle" />
+        </TableRow>
+
+    </TableLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
