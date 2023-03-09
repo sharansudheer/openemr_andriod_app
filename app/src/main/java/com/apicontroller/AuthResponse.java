@@ -1,4 +1,4 @@
-package com.test.apitest;
+package com.apicontroller;
 
 public class AuthResponse {
 
