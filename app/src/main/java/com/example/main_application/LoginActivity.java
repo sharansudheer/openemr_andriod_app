@@ -8,15 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 import android.widget.Toast;
 
 
+import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
-import com.apicontroller.Authorize;
+
 
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
     private Context context;
@@ -36,12 +40,18 @@ public class LoginActivity extends AppCompatActivity {
         Account account = new Account(username, "com.example.main_application.ACCOUNT_TYPE");
         accountManager.addAccountExplicitly(account, password, null);
 
-        Authorize.ApiService apiService = retrofit.create(Authorize.ApiService.class);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.example.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        ApiService apiService = retrofit.create(com.apicontroller.ApiService.class);
         Call<AuthResponse> call = apiService.authenticateUser(
                 "password",
                 "",
-                "",
-                "users",
+                '',
                 username,
                 password
         );
