@@ -25,9 +25,9 @@ import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
     private Context context;
-    public void LoginHandler(View v) {
 
-        // Initialize the context variable
+
+    public void LoginHandler(View v) {
         context = getApplicationContext();
 
         // code to be executed when button is clicked
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.example.com/")
+                .baseUrl("")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -57,19 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                 username,
                 password
         );
+        // Initialize the context variable
         call.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-                    // Do something with the tokenResponse
-                    Intent myIntent = new Intent(LoginActivity.this, MainPatientDashboard.class);
-                    //myIntent.putExtra("key", value); //Optional parameters
-                    MainPatientDashboard.startActivity(myIntent);
+                    Intent intent = new Intent(v.getContext(), MainPatientDashboard.class);
+                    startActivity(intent);
+
                 } else {
                     // Handle error
                 }
             }
-
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 // Handle error
