@@ -10,5 +10,4 @@ public class AuthResponse {
 	@SerializedName("refresh_token")
 	private String refreshToken;
 
-
 }
