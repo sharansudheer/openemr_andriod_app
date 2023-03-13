@@ -1,5 +1,6 @@
 package com.example.main_application;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,6 +21,7 @@ public class MainPatientDashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
+
         TableLayout tblLayout = (TableLayout) findViewById(R.id.button_table);
         TableRow row = (TableRow)tblLayout.getChildAt(0); // Here get row id depending on number of row
         Button button = (Button)row.getChildAt(0); // get
