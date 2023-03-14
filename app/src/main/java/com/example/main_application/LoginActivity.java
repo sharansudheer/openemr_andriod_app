@@ -1,6 +1,6 @@
 package com.example.main_application;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,41 +62,28 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
                  // Set the custom OkHttpClient instance
         String scope = "openid offline_access api:oemr user/allergy.read user/allergy.write user/appointment.read user/appointment.write user/dental_issue.read user";
-        Toast.makeText(this, "Broke at encoding", Toast.LENGTH_SHORT).show();
-
-        try {
-            // code that may throw UnsupportedEncodingException
-            String encodedScope = URLEncoder.encode(scope, "UTF-8");
-            Retrofit retrofit = builder.build();
-            ApiService apiService = retrofit.create(ApiService.class);
-            Call<AuthResponse> call = apiService.authenticateUser(
-                    "password",
-                    "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ",
-                    encodedScope,
-                    "users",
-                    username,
-                    password
-            );
-            Intent intent = new Intent(this, MainPatientDashboard.class);
-            call.enqueue(new Callback<AuthResponse>() {
-                @Override
-                public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                    if(response.isSuccessful()){
-                        startActivity(intent);
-                    }
+        Retrofit retrofit = builder.build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<AuthResponse> call = apiService.authenticateUser(
+                "password",
+                "",
+                scope,
+                "users",
+                username,
+                password
+        );
+        Intent intent = new Intent(this, MainPatientDashboard.class);
+        call.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if(response.isSuccessful()){
+                    startActivity(intent);
                 }
-                @Override
-                public void onFailure(Call<AuthResponse> call, Throwable t) {
-                }
-            });
-        } catch (UnsupportedEncodingException e) {
-            // handle the exception
-            Toast.makeText(this, "Broke at encoding", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-
+            }
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            }
+        });
     }
 }
 
