@@ -24,7 +24,7 @@ public class MainPatientDashboard extends AppCompatActivity {
 
         TableLayout tblLayout = (TableLayout) findViewById(R.id.button_table);
         TableRow row = (TableRow)tblLayout.getChildAt(0); // Here get row id depending on number of row
-        Button button = (Button)row.getChildAt(0); // get
+        Button button = (Button)row.getChildAt(1); // get
         call_appointment = (Button) findViewById(R.id.goto_appointments);
         call_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,9 +32,26 @@ public class MainPatientDashboard extends AppCompatActivity {
                 openNewActivity();
             }
         });
+
+
+        TableRow row1 = (TableRow)tblLayout.getChildAt(0); // Here get row id depending on number of row
+        Button button2 = (Button)row1.getChildAt(0);
+        call_billing = (Button) findViewById(R.id.goto_billing);
+        call_billing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewBilling();
+            }
+        });
     }
+
     public void openNewActivity(){
         Intent intent = new Intent(this, Appointments.class);
         startActivity(intent);
+    }
+    public void openNewBilling(){
+        Intent intent = new Intent(this, Ledger.class);
+        startActivity(intent);
+
     }
 }
