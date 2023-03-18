@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
+import java.util.Map;
 
-import okhttp3.FormBody;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -21,15 +20,12 @@ import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.ResponseBody;
-
 
 import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openNewActivity(username2,password2);
+                public void onClick(View v) {
+                    openNewActivity();
             }
         });
     }
@@ -57,77 +53,67 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    public void openNewActivity(String username,String password) {
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://mobileapp.trackdemon.in/oauth2/default/token";
-        String grantType = "password";
-        String clientId = "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ";
-        String userRole = "users";
-        String scope = "openid offline_access api:oemr user/allergy.read user/allergy.write user/appointment.read user/appointment.write user/dental_issue.read user";
+    public void openNewActivity() {
+        String username = "";
+        String password = "";
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+
+                        Request.Builder builder = originalRequest.newBuilder().header("Authorization",
+                                Credentials.basic(username, password));
+
+                        Request newRequest = builder.build();
+                        return chain.proceed(newRequest);
+                    }
+                }).build();
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("")
+                .addConverterFactory(GsonConverterFactory.create())
+                ;
+
+        Retrofit retrofit = builder.build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Map<String, Object> map= new HashMap<>();
+        map.put("grant_type", "password");
+        map.put("client_id", "");
+        map.put("scope", "");
+        map.put("user_role", "users");
+        map.put("username", username);
+        map.put("password", password );
 
 
-        RequestBody requestBody = new FormBody.Builder()
-                .add("grant_type", grantType)
-                .add("client_id", clientId)
-                .add("scope", scope)
-                .add("user_role", userRole)
-                .add("username", username)
-                .add("password", password)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                .post(requestBody)
-                .build();
+        Call<AuthResponse> call = apiService.authenticateUser(map);
         Intent intent = new Intent(this, MainPatientDashboard.class);
-//
-            startActivity(intent);
-//
-//
+        call.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if (response.isSuccessful()) {
+                    AuthResponse authResponse = response.body();
+                    String accessToken = authResponse.getAccessToken();
+                    Toast.makeText(getApplicationContext(), "Access token: " + accessToken, Toast.LENGTH_LONG).show();
+                    //startActivity(intent);
 
-//        Retrofit.Builder builder = new Retrofit.Builder()
-//                .baseUrl("https://mobileapp.trackdemon.in/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .client(client);
-                 // Set the custom OkHttpClient instance
-//        Retrofit retrofit = builder.build();
-//        ApiService apiService = retrofit.create(ApiService.class);
-//        Call<AuthResponse> call = apiService.authenticateUser(
-//                "password",
-//                "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ",
-//                scope,
-//                "users",
-//                username,
-//                password
-//        );
-//        Intent intent = new Intent(this, MainPatientDashboard.class);
-//
-//
-//        call.enqueue(new Callback<AuthResponse>() {
-//            @Override
-//            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-//                if(response.isSuccessful()){
-//                    startActivity(intent);
-//                }
-//                else{
-//                    //code broke here
-//                    Toast.makeText(LoginActivity.this, "Broke at the is Success", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<AuthResponse> call, Throwable t) {
-//                Toast.makeText(LoginActivity.this, "No Network", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Broke at the is Success", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-//        try {
-//            Response response = client.newCall(request).execute();
-            // Do something with the response.
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "No Net", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+     }
 }
+
+
+
+
 
