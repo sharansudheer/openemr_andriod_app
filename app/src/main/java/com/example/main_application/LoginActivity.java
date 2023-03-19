@@ -2,6 +2,9 @@ package com.example.main_application;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -35,27 +38,25 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-        EditText nameField = findViewById(R.id.get_name);
-        String username2 = nameField.getText().toString();
-        EditText passField = findViewById(R.id.get_password);
-        String password2 = passField.getText().toString();
-        button = (Button) findViewById(R.id.submit_login);
 
+        EditText nameField = findViewById(R.id.get_name);
+        EditText passField = findViewById(R.id.get_password);
+
+
+        button = (Button) findViewById(R.id.submit_login);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
-                    openNewActivity();
+                String username2 = nameField.getText().toString();
+                String password2 = passField.getText().toString();
+                openNewActivity(username2,password2);
             }
         });
     }
 
 
+    public void openNewActivity(String username, String password) {
 
-
-
-    public void openNewActivity() {
-        String username = "";
-        String password = "";
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 }).build();
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://mobileapp.trackdemon.in/")
                 .addConverterFactory(GsonConverterFactory.create())
                 ;
 
@@ -80,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Map<String, Object> map= new HashMap<>();
         map.put("grant_type", "password");
-        map.put("client_id", "");
-        map.put("scope", "");
+        map.put("client_id", "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ");
+        map.put("scope", "openid api:oemr api:fhir user/allergy.read user/allergy.write");
         map.put("user_role", "users");
         map.put("username", username);
         map.put("password", password );
@@ -93,10 +94,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
+                    AccountManager accountManager = AccountManager.get(getApplicationContext());
+                    Account[] accounts = accountManager.getAccountsByType("com.example.myapp.account");
+                    if (accounts.length > 0) {
+                        String accessToken = accountManager.peekAuthToken(accounts[0], "access_token");
+                        if (accessToken != null) {
+                            // Launch Dashboard activity
+                            Intent intent = new Intent(this, DashboardActivity.class);
+                            startActivity(intent);
+                            return; // Don't launch Login activity
+                        }
+                    }
                     AuthResponse authResponse = response.body();
-                    String accessToken = authResponse.getAccessToken();
-                    Toast.makeText(getApplicationContext(), "Access token: " + accessToken, Toast.LENGTH_LONG).show();
-                    //startActivity(intent);
+                    //String accessToken = authResponse.getAccessToken();
+                    //Toast.makeText(getApplicationContext(), "Access token: " + accessToken, Toast.LENGTH_LONG).show();
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Broke at the is Success", Toast.LENGTH_SHORT).show();
