@@ -15,6 +15,6 @@
     <string name="prescription">Prescription</string>
     <string name="billing">Billing</string>
     <string name="appointments">Appointments</string>
-    <string name="button_6">Button 6</string>
+    <string name="test">Test Button</string>
     <string name="dashboard_title">Dashboard</string>
 </resources>

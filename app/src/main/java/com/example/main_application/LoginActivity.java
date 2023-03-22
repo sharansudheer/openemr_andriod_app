@@ -62,10 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request originalRequest = chain.request();
-
                         Request.Builder builder = originalRequest.newBuilder().header("Authorization",
                                 Credentials.basic(username, password));
-
                         Request newRequest = builder.build();
                         return chain.proceed(newRequest);
                     }
@@ -75,7 +73,6 @@ public class LoginActivity extends AppCompatActivity {
                 .baseUrl("https://mobileapp.trackdemon.in/")
                 .addConverterFactory(GsonConverterFactory.create())
                 ;
-
         Retrofit retrofit = builder.build();
         ApiService apiService = retrofit.create(ApiService.class);
 
@@ -88,30 +85,22 @@ public class LoginActivity extends AppCompatActivity {
         map.put("password", password );
 
 
+
         Call<AuthResponse> call = apiService.authenticateUser(map);
         Intent intent = new Intent(this, MainPatientDashboard.class);
         call.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-                    AccountManager accountManager = AccountManager.get(getApplicationContext());
-                    Account[] accounts = accountManager.getAccountsByType("com.example.myapp.account");
-                    if (accounts.length > 0) {
-                        String accessToken = accountManager.peekAuthToken(accounts[0], "access_token");
-                        if (accessToken != null) {
-                            // Launch Dashboard activity
-                            Intent intent = new Intent(this, DashboardActivity.class);
-                            startActivity(intent);
-                            return; // Don't launch Login activity
-                        }
-                    }
-                    AuthResponse authResponse = response.body();
-                    //String accessToken = authResponse.getAccessToken();
-                    //Toast.makeText(getApplicationContext(), "Access token: " + accessToken, Toast.LENGTH_LONG).show();
+//                    AccountManager accountManager = AccountManager.get(getApplicationContext());
+//                    Account account = new Account(username, "com.example.myapp.account");
+//                    accountManager.addAccountExplicitly(account, null, null);
+//                    accountManager.setAuthToken(account, "access_token", response.body().getAccessToken());
+
                     startActivity(intent);
 
                 } else {
-                    Toast.makeText(LoginActivity.this, "Broke at the is Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -124,8 +113,6 @@ public class LoginActivity extends AppCompatActivity {
 
      }
 }
-
-
 
 
 
