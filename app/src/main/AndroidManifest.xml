@@ -13,56 +13,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Main_Application"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
+
         <activity
             android:name=".Summary"
             android:exported="false" />
+
         <activity
             android:name=".Allergies"
             android:exported="false" />
+
         <activity
             android:name=".Prescriptions"
             android:exported="false"
             android:label="@string/prescription" />
+
         <activity
             android:name=".Appointments"
             android:exported="false"
             android:label="@string/appointments">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="@string/appointments" />
         </activity>
+
         <activity
             android:name=".Ledger"
             android:exported="false"
-            android:label="@string/billing"
-            android:theme="@style/Theme.Main_Application.NoActionBar">
+            android:label="@string/billing">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="@string/billing" />
         </activity>
+
         <activity
             android:name=".MainPatientDashboard"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/dashboard_title">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginActivity"
-            android:enableOnBackInvokedCallback="true"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/login_text">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
