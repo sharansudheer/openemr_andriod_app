@@ -1,11 +1,13 @@
 package com.example.main_application;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+    private SharedPreferences sharedPreferences;
 
     // code to be executed when button is clicked
     Button button;
@@ -38,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+
+        sharedPreferences = getSharedPreferences("MY_APP_PREFS", MODE_PRIVATE);
+
 
         EditText nameField = findViewById(R.id.get_name);
         EditText passField = findViewById(R.id.get_password);
@@ -53,6 +59,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                // User has logged out or the session has expired, start the login process again
+                // Reset the IS_LOGGED_IN value in the shared preferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("IS_LOGGED_IN", false);
+                editor.apply();
+            }
+        }
+    }
+
 
 
     public void openNewActivity(String username, String password) {
@@ -87,31 +109,32 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Call<AuthResponse> call = apiService.authenticateUser(map);
-        Intent intent = new Intent(this, MainPatientDashboard.class);
         call.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-//                    AccountManager accountManager = AccountManager.get(getApplicationContext());
-//                    Account account = new Account(username, "com.example.myapp.account");
-//                    accountManager.addAccountExplicitly(account, null, null);
-//                    accountManager.setAuthToken(account, "access_token", response.body().getAccessToken());
-
-                    startActivity(intent);
-
+                    onSuccessfulAuthentication();
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "No Net", Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+    private void onSuccessfulAuthentication() {
+        // Set IS_LOGGED_IN to true
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("IS_LOGGED_IN", true);
+        editor.apply();
 
-     }
+        // Proceed to the MainPatientDashboard activity
+        Intent intent = new Intent(this, MainPatientDashboard.class);
+        startActivityForResult(intent, 1);
+    }
 }
 
 

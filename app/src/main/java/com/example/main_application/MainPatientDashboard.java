@@ -22,15 +22,21 @@ public class MainPatientDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
 
-        // Get shared preferences object
+         //Get shared preferences object
         sharedPreferences = getSharedPreferences("MY_APP_PREFS", MODE_PRIVATE);
         // Check if user is logged in
         boolean isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false);
-        if (isLoggedIn) {
-            // User is already logged in, start dashboard activity
-            Intent intent = new Intent(this, MainPatientDashboard.class);
+        Intent intent;
+        if (!isLoggedIn) {
+            // User is not logged in, start login activity
+            intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            call_appointment = (Button) findViewById(R.id.goto_appointments);
+
+
+        } else {
+
+
+            call_appointment = findViewById(R.id.goto_appointments);
             call_appointment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -38,7 +44,7 @@ public class MainPatientDashboard extends AppCompatActivity {
                 }
             });
 
-            call_billing = (Button) findViewById(R.id.goto_billing);
+            call_billing = findViewById(R.id.goto_billing);
             call_billing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -46,13 +52,8 @@ public class MainPatientDashboard extends AppCompatActivity {
                 }
             });
 
-            finish();
-        } else {
-            // User is not logged in, start login activity
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
         }
+        finish();
     }
 
     public void openNewActivity(){
@@ -64,4 +65,10 @@ public class MainPatientDashboard extends AppCompatActivity {
         startActivity(intent);
 
     }
+    private void onUserLoggedOut() {
+        // Set the result and finish the activity
+        setResult(RESULT_OK);
+        finish();
+    }
+
 }
