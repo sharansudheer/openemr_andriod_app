@@ -137,5 +137,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 }
 
+//    public void submit() {
+//        final String userName = ((TextView) findViewById(R.id.accountName)).getText().toString();
+//        final String userPass = ((TextView) findViewById(R.id.accountPassword)).getText().toString();
+//        new AsyncTask<Void, Void, Intent>() {
+//            @Override
+//            protected Intent doInBackground(Void... params) {
+//                String authtoken = sServerAuthenticate.userSignIn(userName, userPass, mAuthTokenType);
+//                final Intent res = new Intent();
+//                res.putExtra(AccountManager.KEY_ACCOUNT_NAME, userName);
+//                res.putExtra(AccountManager.KEY_ACCOUNT_TYPE, ACCOUNT_TYPE);
+//                res.putExtra(AccountManager.KEY_AUTHTOKEN, authtoken);
+//                res.putExtra(PARAM_USER_PASS, userPass);
+//                return res;
+//            }
+//            @Override
+//            protected void onPostExecute(Intent intent) {
+//                finishLogin(intent);
+//            }
+//        }.execute();
+//    }
+
 
 
