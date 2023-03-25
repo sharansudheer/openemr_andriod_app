@@ -159,4 +159,23 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
 
+//private void finishLogin(Intent intent) {
+//    String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+//    String accountPassword = intent.getStringExtra(PARAM_USER_PASS);
+//    final Account account = new Account(accountName, intent.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE));
+//    if (getIntent().getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, false)) {
+//        String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
+//        String authtokenType = mAuthTokenType;
+//        // Creating the account on the device and setting the auth token we got
+//        // (Not setting the auth token will cause another call to the server to authenticate the user)
+//        mAccountManager.addAccountExplicitly(account, accountPassword, null);
+//        mAccountManager.setAuthToken(account, authtokenType, authtoken);
+//    } else {
+//        mAccountManager.setPassword(account, accountPassword);
+//    }
+//    setAccountAuthenticatorResult(intent.getExtras());
+//    setResult(RESULT_OK, intent);
+//    finish();
+//}
+
 
