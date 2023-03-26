@@ -17,4 +17,5 @@
     <string name="appointments">Appointments</string>
     <string name="test">Test Button</string>
     <string name="dashboard_title">Dashboard</string>
+    <string name="log_out">Log Out</string>
 </resources>

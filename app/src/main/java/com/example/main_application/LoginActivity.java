@@ -1,13 +1,17 @@
 package com.example.main_application;
 
 
-import androidx.annotation.Nullable;
+import com.data.EntityToken;
+import com.data.AppDatabase;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +33,11 @@ import okhttp3.Request;
 import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
 
+
 import java.io.IOException;
 import java.util.HashMap;
+
+
 
 public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
@@ -60,20 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                // User has logged out or the session has expired, start the login process again
-                // Reset the IS_LOGGED_IN value in the shared preferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("IS_LOGGED_IN", false);
-                editor.apply();
-            }
-        }
-    }
 
 
 
@@ -81,8 +74,9 @@ public class LoginActivity extends AppCompatActivity {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
+                    @NonNull
                     @Override
-                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                    public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
                         Request originalRequest = chain.request();
                         Request.Builder builder = originalRequest.newBuilder().header("Authorization",
                                 Credentials.basic(username, password));
@@ -92,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 }).build();
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://mobileapp.trackdemon.in/")
+                .baseUrl("")
                 .addConverterFactory(GsonConverterFactory.create())
                 ;
         Retrofit retrofit = builder.build();
@@ -100,9 +94,9 @@ public class LoginActivity extends AppCompatActivity {
 
         Map<String, Object> map= new HashMap<>();
         map.put("grant_type", "password");
-        map.put("client_id", "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ");
-        map.put("scope", "openid api:oemr api:fhir user/allergy.read user/allergy.write");
-        map.put("user_role", "users");
+        map.put("client_id", "");
+        map.put("scope", "");
+        map.put("user_role", "");
         map.put("username", username);
         map.put("password", password );
 
@@ -113,8 +107,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-                    onSuccessfulAuthentication();
-                } else {
+                        AuthResponse authResponse = response.body();
+                        if (authResponse != null) {
+                            onSuccessfulAuthentication(authResponse.getRefreshToken());
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("isLoggedIn", true);
+                            editor.apply();
+
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authentication response is empty", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
                     Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -125,17 +129,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void onSuccessfulAuthentication() {
+    private void onSuccessfulAuthentication(String refreshToken) {
         // Set IS_LOGGED_IN to true
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("IS_LOGGED_IN", true);
-        editor.apply();
+        new SaveRefreshTokenTask().execute(refreshToken);
 
-        // Proceed to the MainPatientDashboard activity
-        Intent intent = new Intent(this, MainPatientDashboard.class);
-        startActivityForResult(intent, 1);
+
     }
+    private class SaveRefreshTokenTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... tokens) {
+            String refreshToken = tokens[0];
+            AppDatabase appDatabase = AppDatabase.getDatabase(LoginActivity.this);
+            EntityToken token = new EntityToken(1, refreshToken);
+            appDatabase.refreshTokenDao().saveRefreshToken(token);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            // Proceed to the MainPatientDashboard activity
+            // Replace "MainPatientDashboard" with the actual name of your activity
+            Intent intent = new Intent(LoginActivity.this, MainPatientDashboard.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
 }
+
 
 //    public void submit() {
 //        final String userName = ((TextView) findViewById(R.id.accountName)).getText().toString();
