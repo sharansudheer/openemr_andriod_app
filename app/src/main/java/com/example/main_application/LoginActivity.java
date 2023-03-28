@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 }).build();
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://mobileapp.trackdemon.in/")
                 .addConverterFactory(GsonConverterFactory.create())
                 ;
         Retrofit retrofit = builder.build();
@@ -94,9 +94,9 @@ public class LoginActivity extends AppCompatActivity {
 
         Map<String, Object> map= new HashMap<>();
         map.put("grant_type", "password");
-        map.put("client_id", "");
-        map.put("scope", "");
-        map.put("user_role", "");
+        map.put("client_id", "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ");
+        map.put("scope", "openid api:oemr api:fhir user/allergy.read user/allergy.write");
+        map.put("user_role", "users");
         map.put("username", username);
         map.put("password", password );
 
