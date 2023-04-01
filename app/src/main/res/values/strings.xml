@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MDC_APP</string>
+    <string name="app_name">Main_Application</string>
     <string name="title_activity_login_main">LoginMain</string>
     <string name="enter_name">Enter Name</string>
     <string name="password">Password</string>
@@ -18,6 +18,4 @@
     <string name="test">Test Button</string>
     <string name="dashboard_title">Dashboard</string>
     <string name="log_out">Log Out</string>
-    <string name="welcome">Welcome Back</string>
-
 </resources>
