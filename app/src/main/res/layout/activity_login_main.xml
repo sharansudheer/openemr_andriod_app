@@ -48,6 +48,12 @@
         app:layout_constraintTop_toBottomOf="@+id/get_name" />
 
     <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+
+        android:gravity="center"
+        app:backgroundTint="@color/primary_white"
+        android:textColor="@color/white"
+        android:autoSizeTextType="uniform"
         android:id="@+id/submit_login"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -57,33 +63,45 @@
         android:paddingTop="10dp"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
-        android:text="@string/login"
+        android:text="@string/login_text"
+        android:elevation="6dp"
         app:layout_constraintEnd_toEndOf="@+id/get_password"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/get_password"
         app:layout_constraintTop_toBottomOf="@+id/get_password" />
 
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="210dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/header"
+        app:layout_constraintBottom_toTopOf="@+id/get_name"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="@string/login_text"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/gilroy_bold"
+        android:textColor="@color/primary_white"
+        android:text="@string/welcome"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.46" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
