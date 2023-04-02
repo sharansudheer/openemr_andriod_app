@@ -16,14 +16,14 @@ public class MainActivity extends AppCompatActivity {
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
         // Start the appropriate activity based on the login status
-        Intent intent;
-        if (isLoggedIn) {
-            intent = new Intent(this, MainPatientDashboard.class);
-        } else {
-            intent = new Intent(this, LoginActivity.class);
-        }
-        startActivity(intent);
-        finish();
+//        Intent intent;
+//        if (isLoggedIn) {
+//            intent = new Intent(this, MainPatientDashboard.class);
+//        } else {
+//            intent = new Intent(this, LoginActivity.class);
+//        }
+//        startActivity(intent);
+//        finish();
     }
 }
 
