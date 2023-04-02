@@ -6,11 +6,15 @@ import com.data.AppDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
@@ -25,16 +29,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-import okhttp3.Credentials;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+
 
 import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
 
 
-import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -45,10 +45,15 @@ public class LoginActivity extends AppCompatActivity {
     // code to be executed when button is clicked
     Button button;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         sharedPreferences = getSharedPreferences("MY_APP_PREFS", MODE_PRIVATE);
 
@@ -71,18 +76,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void openNewActivity(String username, String password) {
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @NonNull
-                    @Override
-                    public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
-                        Request originalRequest = chain.request();
-                        Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                                Credentials.basic(username, password));
-                        Request newRequest = builder.build();
-                        return chain.proceed(newRequest);
-                    }
-                }).build();
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://mobileapp.trackdemon.in/")
@@ -105,16 +98,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
                     AuthResponse authResponse = response.body();
-                    if (authResponse != null) {
-                        onSuccessfulAuthentication(authResponse.getRefreshToken());
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean("isLoggedIn", true);
-                        editor.apply();
+                    String refreshToken = authResponse.getAccessToken();
+                    EditText nameField = findViewById(R.id.get_name);
+                    if (refreshToken != null) {
+                        nameField.setText(refreshToken);
+                        } else {
+                        nameField.setText("NULL");
+                        }
 
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Authentication response is empty", Toast.LENGTH_SHORT).show();
-                    }
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                 }
@@ -148,4 +139,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 }
 
+//    AuthResponse authResponse = response.body();
+//                    String refreshToken = authResponse.getAccessToken();
+//                    EditText nameField = findViewById(R.id.get_name);
+//                    if (refreshToken != null) {
+//                        nameField.setText(refreshToken);
+//                        } else {
+//                        nameField.setText("NULL");
+//                        }
 
+//    String refreshToken = authResponse.getRefreshToken();
+//                    Toast.makeText(getApplicationContext(), refreshToken, Toast.LENGTH_SHORT).show();
+//
+//                            if (authResponse != null) {
+//
+//                            onSuccessfulAuthentication(authResponse.getRefreshToken());
+//                            SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            editor.putBoolean("isLoggedIn", true);
+//                            editor.apply();
+//
+//                            } else {
+//                            Toast.makeText(LoginActivity.this, "Authentication response is empty", Toast.LENGTH_SHORT).show();
+//                            }
