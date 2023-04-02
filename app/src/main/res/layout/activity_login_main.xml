@@ -68,7 +68,7 @@
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
         android:text="@string/login_text"
-        android:elevation="6dp"
+        android:elevation="3dp"
         app:layout_constraintEnd_toEndOf="@+id/get_password"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/get_password"
