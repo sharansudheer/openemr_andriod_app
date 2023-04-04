@@ -35,17 +35,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="300dp"
-                    android:layout_height="70dp"
-                    android:gravity="center"
-                    android:autoSizeTextType="uniform"
-                    android:fontFamily="@font/gilroy_bold"
-                    android:text="@string/welcome"
-                    android:textAllCaps="true"
-                    android:textColor="@color/primary_white"
-                     />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/gilroy_bold"
+                android:text="@string/welcome"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_white"
+                />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -105,7 +105,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColorHint="#D81B60"
-                   />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -124,6 +124,7 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
+
                     android:paddingBottom="10dp"
                     android:text="@string/login_text"
                     android:textColor="@color/white"
@@ -136,3 +137,6 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
