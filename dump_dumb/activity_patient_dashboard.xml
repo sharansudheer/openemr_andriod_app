@@ -271,3 +271,22 @@
         </com.google.android.material.tabs.TabLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!-- com.google.android.material.textfield.TextInputLayout -->
+<!--                    app:endIconMode="password_toggle"-->
+<!--                    android:id="@+id/get_password"-->
+<!--                    android:layout_width="300dp"-->
+<!--                    android:layout_height="55dp"-->
+<!--                    >-->
+
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        app:boxStrokeWidthFocused="2dp"-->
+<!--                        app:boxStrokeWidth="1dp"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:hint="@string/password"-->
+<!--                        android:importantForAutofill="no"-->
+<!--                        android:inputType="textPassword"-->
+<!--                        android:textColorHint="#D81B60"-->
+<!--                        />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>
