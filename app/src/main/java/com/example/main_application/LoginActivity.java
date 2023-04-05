@@ -1,6 +1,8 @@
 package com.example.main_application;
 
-
+import com.apicontroller.ApiService;
+import com.apicontroller.AuthResponse;
+import com.secrets.Secrets;
 import com.data.EntityToken;
 import com.data.AppDatabase;
 
@@ -15,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Map;
+
 
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,11 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-import com.apicontroller.ApiService;
-import com.apicontroller.AuthResponse;
-import com.secrets.Secrets;
 
 
+import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
