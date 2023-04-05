@@ -25,6 +25,7 @@ import retrofit2.Retrofit;
 
 import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
+import com.secrets.Secrets;
 
 
 import java.util.HashMap;
@@ -81,9 +82,9 @@ public class LoginActivity extends AppCompatActivity {
 
         Map<String, Object> map = new HashMap<>();
         map.put("grant_type", "password");
-        map.put("client_id", "FTHOrCUow4SvwKhkPe7jRlLUzygTcSyzYOyUV9DTZEQ");
-        map.put("scope", "openid offline_access api:oemr api:fhir user/allergy.read user/allergy.write");
-        map.put("user_role", "users");
+        map.put("client_id", Secrets.CLIENT_ID);
+        map.put("scope", Secrets.SCOPE);
+        map.put("user_role", Secrets.USER_ROLE);
         map.put("username", username);
         map.put("password", password);
 
