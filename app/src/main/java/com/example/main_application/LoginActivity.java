@@ -2,6 +2,7 @@ package com.example.main_application;
 
 import com.apicontroller.ApiService;
 import com.apicontroller.AuthResponse;
+
 import com.secrets.Secrets;
 import com.data.EntityToken;
 import com.data.AppDatabase;
@@ -10,12 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+import com.google.android.material.textfield.TextInputEditText;
+
 
 
 
@@ -29,6 +32,7 @@ import retrofit2.Retrofit;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     Button button;
     private ExecutorService executorService;
 
-
+    private TextInputEditText passField;
+    private TextInputEditText nameField;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,18 +60,22 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
-        //SharedPreferences sharedPreferences = getSharedPreferences("MY_APP_PREFS", MODE_PRIVATE);
-
-
-        EditText nameField = findViewById(R.id.get_name);
-        EditText passField = findViewById(R.id.get_password);
-
+        nameField = (TextInputEditText)findViewById(R.id.get_name);
+        passField =(TextInputEditText)findViewById(R.id.get_password);
 
         button = (Button) findViewById(R.id.submit_login);
+
         button.setOnClickListener(v -> {
-            String username2 = nameField.getText().toString();
-            String password2 = passField.getText().toString();
-            openNewActivity(username2, password2);
+
+            String username2 = Objects.requireNonNull(nameField.getText()).toString();
+            String password2 = Objects.requireNonNull(passField.getText()).toString();
+            if(!username2.isEmpty() && !password2.isEmpty()){
+                    openNewActivity(username2,password2);
+                }
+            else{
+
+                Toast.makeText(LoginActivity.this, "Please Enter the Username or Password", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -178,3 +187,8 @@ public class LoginActivity extends AppCompatActivity {
 // meaning it can be called with any number of String arguments.
 // However, when calling execute() on an AsyncTask, we can generally pass the arguments that will be received by
 // doInBackground().
+
+
+//TextInputLayout passInputLayout = findViewById(R.id.password_layout);
+//ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.custom_stroke_color));
+//passInputLayout.setBoxStrokeColorStateList(colorStateList);
