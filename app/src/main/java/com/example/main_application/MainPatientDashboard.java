@@ -20,7 +20,7 @@ public class MainPatientDashboard extends AppCompatActivity {
     Button call_prescription;
     Button call_allergies;
     Button call_summary;
-    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +28,10 @@ public class MainPatientDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_main_patient_dashboard);
 
         call_appointment = findViewById(R.id.goto_appointments);
-        call_appointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNewActivity();
-            }
-        });
+        call_appointment.setOnClickListener(v -> openNewActivity());
 
         call_billing = findViewById(R.id.goto_billing);
-        call_billing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNewBilling();
-            }
-        });
+        call_billing.setOnClickListener(v -> openNewBilling());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,8 +56,8 @@ public class MainPatientDashboard extends AppCompatActivity {
         editor.apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-//        setResult(RESULT_OK);
-//        finish();
+        setResult(RESULT_OK);
+        finish();
     }
 
 
