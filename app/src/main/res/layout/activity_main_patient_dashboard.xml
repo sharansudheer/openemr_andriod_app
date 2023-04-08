@@ -1,90 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPatientDashboard"
-    android:background="@drawable/matte_background">
+    tools:context=".MainPatientDashboard">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/toolBarCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
-    <Button
-        android:id="@+id/goto_appointments"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="35dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/appointments"
-        app:layout_constraintBottom_toTopOf="@+id/goto_prescription"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/goto_billing"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="35dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/billing"
-        app:layout_constraintBottom_toTopOf="@+id/goto_allergies"
-        app:layout_constraintEnd_toEndOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/goto_prescription"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="35dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/prescription"
-        app:layout_constraintBottom_toTopOf="@+id/goto_summary"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/goto_allergies"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="35dp"
-        android:layout_weight="1"
-        android:text="@string/allergies"
-        app:layout_constraintBottom_toTopOf="@+id/goto_appointments"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/goto_summary"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="225dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="100dp"
-        android:layout_weight="1"
-        android:text="@string/appointment_summary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/goto_test"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="35dp"
-        android:layout_weight="1"
-        android:text="@string/test"
-        app:layout_constraintBottom_toTopOf="@+id/goto_billing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
