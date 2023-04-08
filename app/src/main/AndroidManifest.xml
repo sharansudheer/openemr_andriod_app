@@ -51,7 +51,7 @@
 
         <activity
             android:name=".MainPatientDashboard"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/dashboard_title">
             <meta-data
                 android:name="android.app.lib_name"

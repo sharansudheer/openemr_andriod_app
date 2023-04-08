@@ -13,7 +13,5 @@ public interface ApiService {
         @POST("oauth2/default/token")
         Call<AuthResponse> authenticateUser(@FieldMap Map<String, Object> map);
 
-
-
 }
 
