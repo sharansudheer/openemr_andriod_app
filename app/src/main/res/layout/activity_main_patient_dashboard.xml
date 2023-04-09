@@ -9,10 +9,10 @@
     tools:openDrawer="start"
     tools:context=".MainPatientDashboard">
 
-<RelativeLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainPatientDashboard">
+    android:layout_height="match_parent">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -23,8 +23,12 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white" />
+            android:background="@color/white"
+            app:title="@string/dashboard_title"
+            app:menu="@menu/dashboard_menu"
+            />
     </com.google.android.material.appbar.AppBarLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -53,7 +57,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer_view"
         android:layout_width="wrap_content"
@@ -62,3 +66,4 @@
         app:menu="@menu/navigation_drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

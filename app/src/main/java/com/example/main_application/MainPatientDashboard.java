@@ -1,7 +1,13 @@
 package com.example.main_application;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,28 +16,37 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import android.view.View;
-import android.widget.Button;
+public class MainPatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainPatientDashboard extends AppCompatActivity {
-    Button call_appointment;
-    Button call_billing;
-    Button call_prescription;
-    Button call_allergies;
-    Button call_summary;
-
+    DrawerLayout drawerLayout;
+    MaterialToolbar toolBar;
+    Menu menu;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
 
-        call_appointment = findViewById(R.id.goto_appointments);
-        call_appointment.setOnClickListener(v -> openNewActivity());
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        setSupportActionBar(topAppBar);
+        drawerLayout=findViewById(R.id.drawer_layout);
+        navigationView=findViewById(R.id.navigation_drawer_view);
+        toolBar=findViewById(R.id.topAppBar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle=new
+        ActionBarDrawerToggle(this,drawerLayout,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+        menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_login).setVisible(false);
+        menu.findItem(R.id.nav_home).setVisible(false);
+        navigationView.setCheckedItem(R.id.navigation_drawer_view);
 
-        call_billing = findViewById(R.id.goto_billing);
-        call_billing.setOnClickListener(v -> openNewBilling());
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,6 +54,7 @@ public class MainPatientDashboard extends AppCompatActivity {
         inflater.inflate(R.menu.dashboard_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
@@ -47,6 +63,7 @@ public class MainPatientDashboard extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     private void logOut() {
         // log out logic here
@@ -60,16 +77,68 @@ public class MainPatientDashboard extends AppCompatActivity {
         finish();
     }
 
-
-    public void openNewActivity(){
-        Intent intent = new Intent(this, Appointments.class);
-        startActivity(intent);
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {super.onBackPressed();
+        }
     }
-    public void openNewBilling(){
-        Intent intent = new Intent(this, Ledger.class);
-        startActivity(intent);
+    @Override
 
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        int itemId = menuItem.getItemId();
+
+
+             if (itemId == R.id.nav_appointments) {
+                Intent intent = new Intent(MainPatientDashboard.this, Appointments.class);
+                startActivity(intent);
+            }
+            else if (itemId ==R.id.nav_appoint_summary) {
+                Intent intent1 = new Intent(MainPatientDashboard.this, Summary.class);
+                startActivity(intent1);
+            }
+
+            else if (itemId == R.id.nav_ledger) {
+                 Intent intent2 = new Intent(MainPatientDashboard.this, Ledger.class);
+                 startActivity(intent2);
+             }
+             else if (itemId == R.id.nav_surgery){
+                Intent intent3 = new Intent(MainPatientDashboard.this, SurgeryNotes.class);
+                startActivity(intent3);
+    }
+            else if (itemId == R.id.nav_prescriptions){
+                Intent intent4 = new Intent(MainPatientDashboard.this, Prescriptions.class);
+                startActivity(intent4);
     }
 
+            else if (itemId == R.id.nav_login) {
+            menu.findItem(R.id.nav_logout).setVisible(true);
+            menu.findItem(R.id.nav_profile).setVisible(true);
+            menu.findItem(R.id.nav_login).setVisible(false);
+        }
+
+            else if (itemId ==R.id.nav_logout){
+                menu.findItem(R.id.nav_logout).setVisible(false);
+                menu.findItem(R.id.nav_profile).setVisible(false);
+                menu.findItem(R.id.nav_login).setVisible(true);
+                logOut();
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+    }
 
 }
+//nav_login
+//nav_profile
+//nav_logout
+//nav_home
+//nav_appointments
+//nav_appoint_summary
+//nav_ledger
+//nav_surgery
+//nav_prescriptions
