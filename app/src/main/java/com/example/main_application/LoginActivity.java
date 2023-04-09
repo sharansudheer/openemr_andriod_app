@@ -54,12 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
         executorService = Executors.newSingleThreadExecutor();
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        }
+//
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         nameField = (TextInputEditText)findViewById(R.id.get_name);
         passField =(TextInputEditText)findViewById(R.id.get_password);
