@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:title="@string/profile">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_login"
+                        android:icon="@drawable/login_24"
+                        android:title="@string/login" />
+                    <item
+                        android:id="@+id/nav_profile"
+                        android:icon="@drawable/person_icon"
+                        android:title="@string/profile" />
+                    <item
+                        android:id="@+id/nav_logout"
+                        android:icon="@drawable/logout_24"
+                        android:title="@string/log_out" />
+                </group>
+            </menu>
+        </item>
+
+
+        <item android:title="@string/our_services">
+            <menu>
+                <group>
+                    <item
+                    android:id="@+id/nav_appointments"
+                    android:icon="@drawable/appointments_icon"
+                    android:title="@string/appointments" />
+                    <item
+                        android:id="@+id/nav_appoint_summary"
+                        android:icon="@drawable/summary_icon"
+                        android:title="@string/appointment_summary" />
+                    <item
+                        android:id="@+id/nav_ledger"
+                        android:icon="@drawable/ledger_icon"
+                        android:title="@string/transactions" />
+                    <item
+                        android:id="@+id/nav_surgery"
+                        android:icon="@drawable/surgery_notes"
+                        android:title="@string/surgery_notes" />
+                    <item
+                        android:id="@+id/nav_prescriptions"
+                        android:icon="@drawable/prescription_24"
+                        android:title="@string/prescriptions" />
+                </group>
+            </menu>
+        </item>
+
+    <item android:title="@string/preferences">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/settings_24"
+                    android:title="@string/settings" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/about_the_app">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/about_us"
+                android:title="@string/the_developers" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>
