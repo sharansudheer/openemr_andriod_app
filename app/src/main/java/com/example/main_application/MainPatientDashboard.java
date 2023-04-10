@@ -16,7 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 
 public class MainPatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,8 +30,7 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
 
-        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
-        setSupportActionBar(topAppBar);
+
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_drawer_view);
         toolBar=findViewById(R.id.topAppBar);
@@ -57,6 +56,7 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
         if (item.getItemId() == R.id.action_logout) {
             logOut();
             return true;
