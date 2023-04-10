@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -54,12 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
         executorService = Executors.newSingleThreadExecutor();
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        }
-//
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         nameField = (TextInputEditText)findViewById(R.id.get_name);
         passField =(TextInputEditText)findViewById(R.id.get_password);
