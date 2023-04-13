@@ -41,10 +41,7 @@
                         android:id="@+id/nav_ledger"
                         android:icon="@drawable/ledger_icon"
                         android:title="@string/transactions" />
-                    <item
-                        android:id="@+id/nav_surgery"
-                        android:icon="@drawable/surgery_notes"
-                        android:title="@string/surgery_notes" />
+
                     <item
                         android:id="@+id/nav_prescriptions"
                         android:icon="@drawable/prescription_24"

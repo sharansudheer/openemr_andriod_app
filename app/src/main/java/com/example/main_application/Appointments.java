@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.apicontroller.AppointmentResponse;
 import com.apicontroller.GetAppointments;
+import com.viewadapters.*;
+import com.data.EntityToken;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.viewadapters.AppointmentAdapter;
 
@@ -29,7 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Appointments extends AppCompatActivity {
     MaterialToolbar toolBar;
-
+    EntityToken tokengen = new EntityToken();
+    String token =tokengen.getToken();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class Appointments extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,7 +82,7 @@ public class Appointments extends AppCompatActivity {
         finish();
     }
 //get the token from refresh token
-    public void fetchAppointments(String token) {
+    public void fetchAppointments() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://mobileapp.trackdemon.in/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -86,7 +91,7 @@ public class Appointments extends AppCompatActivity {
         Call<List<AppointmentResponse>> call = getAppointment.getAppointments(
                 "1",
                 "application/json",
-                "Bearer " + token
+                "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJGVEhPckNVb3c0U3Z3S2hrUGU3alJsTFV6eWdUY1N5ellPeVVWOURUWkVRIiwianRpIjoiYzFlMGYxODA5ZTlhOTZkYjRiMTAwZDQ1ZWM1N2Q5ZDRlYTk5Y2I1ZThiNzIwMThlNzFmMjg1OGM2OTY4MWZiYTI3OTE3Y2E0MmQzZDg2YTQiLCJpYXQiOjE2ODExOTY3MjAuMTY3NTUyLCJuYmYiOjE2ODExOTY3MjAuMTY3NTU2LCJleHAiOjE2ODEyMDAzMjAuMTUzNDg5LCJzdWIiOiI5ODhiZTI4Zi0xYTdkLTRiMDQtOGM4Mi03ODViY2YzZDhlMDQiLCJzY29wZXMiOlsib3BlbmlkIiwib2ZmbGluZV9hY2Nlc3MiLCJhcGk6b2VtciIsImFwaTpmaGlyIiwidXNlci9hcHBvaW50bWVudC5yZWFkIiwidXNlci9hcHBvaW50bWVudC53cml0ZSIsInNpdGU6ZGVmYXVsdCJdfQ.tSN9CxxLf_v6QCxzK0JzlY9JH_7yJEIzAT7ZMyDeZdmJy-hSJ_twSJr6q9IWIWOv8foaMNUEmGkgQ__E396qTDk9UCTMFP7-3RrvkV3EPSOvphZcM9g96T1QFy5hKjEG0R5jdN1aphjRpMoWfqc0ezZjtNQ3_ZEkM5rWBen7AQk0vcfK-SoJIhdzogMFTG-vRXfvvJFp5MV0kwDVTrCjHJLN6VQ4XOMgXlsfUEpzPefb8gjFvp_k86feAHjxgSJRtR4T6XgX0wV3ffS_Z2RUBoDj1EWu13jkpOIjC4DQtlJT5bO87SALvlc5LAN7MQuMBaA3y7oU52eed6XgOjrOWw"
         );
 
         call.enqueue(new Callback<List<AppointmentResponse>>() {
@@ -99,18 +104,19 @@ public class Appointments extends AppCompatActivity {
                     AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointments);
 
                     // Set the adapter to the RecyclerView
-                    RecyclerView recyclerView = findViewById(R.id.my_recyclerview);
-                    GridLayoutManager layoutManager = new GridLayoutManager(Appointments.this, 2); // Change the second parameter to the number of columns you want
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setAdapter(appointmentAdapter);
+
                 } else {
                     // Handle the error case
+                    Toast.makeText(Appointments.this, "Authentication response is empty", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
                 // Handle the failure case
+                Toast.makeText(Appointments.this, "No Net", Toast.LENGTH_SHORT).show();
+
             }
 
         });

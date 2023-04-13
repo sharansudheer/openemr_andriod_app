@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;
@@ -16,6 +17,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.util.Objects;
 
 
 public class MainPatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +48,57 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         menu.findItem(R.id.nav_login).setVisible(false);
         menu.findItem(R.id.nav_home).setVisible(false);
         navigationView.setCheckedItem(R.id.navigation_drawer_view);
+        toolBar=findViewById(R.id.topAppBar);
+        setSupportActionBar(toolBar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        MaterialButton buttonAppointments = findViewById(R.id.button_appointments);
+        MaterialButton buttonSummary = findViewById(R.id.button_summary);
+        MaterialButton buttonLedger = findViewById(R.id.button_ledger);
+        MaterialButton buttonPrescriptions = findViewById(R.id.button_prescriptions);
+        MaterialButton buttonAllergies = findViewById(R.id.button_allergies);
+
+        // Set up the onClickListeners
+        buttonAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPatientDashboard.this, Appointments.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPatientDashboard.this, Summary.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonLedger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPatientDashboard.this, Ledger.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonPrescriptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPatientDashboard.this, Prescriptions.class);
+                startActivity(intent);
+            }
+        });
+        buttonAllergies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPatientDashboard.this, Allergies.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -56,7 +111,7 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+
         if (item.getItemId() == R.id.action_logout) {
             logOut();
             return true;
@@ -106,10 +161,7 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
                  Intent intent2 = new Intent(MainPatientDashboard.this, Ledger.class);
                  startActivity(intent2);
              }
-             else if (itemId == R.id.nav_surgery){
-                Intent intent3 = new Intent(MainPatientDashboard.this, SurgeryNotes.class);
-                startActivity(intent3);
-    }
+
             else if (itemId == R.id.nav_prescriptions){
                 Intent intent4 = new Intent(MainPatientDashboard.this, Prescriptions.class);
                 startActivity(intent4);

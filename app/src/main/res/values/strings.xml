@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MDC_APP</string>
+    <string name="app_name">Hospital Management</string>
     <string name="title_activity_login_main">LoginMain</string>
     <string name="enter_name">Enter Name</string>
     <string name="password">Password</string>
@@ -28,7 +28,7 @@
     <string name="our_services">Our Services</string>
     <string name="about_the_app">About The App V1.0.0</string>
     <string name="the_developers">The Developers</string>
-
+    <string name="summary">Summary</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="home">Home</string>

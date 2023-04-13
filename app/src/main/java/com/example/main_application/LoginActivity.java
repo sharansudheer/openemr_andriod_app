@@ -1,13 +1,13 @@
 package com.example.main_application;
 
-import com.apicontroller.ApiService;
-import com.apicontroller.AuthResponse;
-
-import com.secrets.Secrets;
-import com.data.EntityToken;
-import com.data.AppDatabase;
-
-import androidx.annotation.NonNull;
+//import com.apicontroller.ApiService;
+//import com.apicontroller.AuthResponse;
+//
+//import com.secrets.Secrets;
+//import com.data.EntityToken;
+//import com.data.AppDatabase;
+//
+//import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,20 +22,20 @@ import com.google.android.material.textfield.TextInputEditText;
 
 
 
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-
-
-
-import java.util.Map;
-import java.util.HashMap;
+//import retrofit2.Callback;
+//import retrofit2.Response;
+//import retrofit2.converter.gson.GsonConverterFactory;
+//import retrofit2.Call;
+//import retrofit2.Retrofit;
+//
+//
+//
+//import java.util.Map;
+//import java.util.HashMap;
 import java.util.Objects;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+//import java.util.concurrent.Callable;
+//import java.util.concurrent.ExecutorService;
+//import java.util.concurrent.Executors;
 
 
 
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // code to be executed when button is clicked
     Button button;
-    private ExecutorService executorService;
+
 
     private TextInputEditText passField;
     private TextInputEditText nameField;
@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-        executorService = Executors.newSingleThreadExecutor();
 
         nameField = (TextInputEditText)findViewById(R.id.get_name);
         passField =(TextInputEditText)findViewById(R.id.get_password);
@@ -75,76 +74,22 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void openNewActivity(String username, String password) {
+        String expectedUsername = "Phillip Andrews";
+        String expectedPassword = "Andrews";
 
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://mobileapp.trackdemon.in/")
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        ApiService apiService = retrofit.create(ApiService.class);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("grant_type", "password");
-        map.put("client_id", Secrets.CLIENT_ID);
-        map.put("scope", Secrets.SCOPE);
-        map.put("user_role", Secrets.USER_ROLE);
-        map.put("username", username);
-        map.put("password", password);
-
-
-        Call<AuthResponse> call = apiService.authenticateUser(map);
-        call.enqueue(new Callback<>() {
-            @Override
-            public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
-                if (response.isSuccessful()) {
-                    AuthResponse authResponse = response.body();
-                    if (authResponse != null && authResponse.getRefreshToken() != null) {
-
-                        String refreshToken = authResponse.getRefreshToken();
-                        saveRefreshToken(LoginActivity.this, refreshToken);
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean("isLoggedIn", true);
-                        editor.apply();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Authentication response is empty", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
-                Toast.makeText(LoginActivity.this, "No Net", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        if (username.equals(expectedUsername) && password.equals(expectedPassword)) {
+            SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isLoggedIn", true);
+            editor.apply();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+        }
     }
-
-
-
-    private void saveRefreshToken(LoginActivity activity, String token) {
-        Callable<Void> saveRefreshTokenTask = () -> {
-            AppDatabase appDatabase = AppDatabase.getDatabase(activity);
-            EntityToken tokens = new EntityToken(1, token);
-            appDatabase.refreshTokenDao().saveRefreshToken(tokens);
-            return null;
-        };
-
-       executorService.submit(saveRefreshTokenTask);
-        // Optionally, you can handle the result of the task here using future.get()
-    }
-    protected void onDestroy() {
-        super.onDestroy();
-        executorService.shutdown();
-    }
-
-
-
 }
 
 //    AuthResponse authResponse = response.body();
