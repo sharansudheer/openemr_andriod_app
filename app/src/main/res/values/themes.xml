@@ -27,6 +27,9 @@
     <style name="Theme.Main_Application.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Main_Application.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Widget.Material3.CardView.Elevated" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">4dp</item>
+    </style>
 
 
 
