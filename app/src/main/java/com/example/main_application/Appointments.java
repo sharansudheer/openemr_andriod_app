@@ -32,8 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Appointments extends AppCompatActivity {
     MaterialToolbar toolBar;
-    EntityToken tokengen = new EntityToken();
-    String token =tokengen.getToken();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

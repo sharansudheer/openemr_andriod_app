@@ -14,9 +14,7 @@ public class EntityToken {
         this.id = id;
         this.token = token;
     }
-    public EntityToken () {
 
-    }
 
     public int getId() {
         return id;
