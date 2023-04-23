@@ -7,11 +7,20 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
 
-    tools:context=".MainPatientDashboard">
+    tools:context="hos_app.main_application.MainPatientDashboard">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/launcher_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -33,7 +42,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainPatientDashboard">
+        tools:context="com.main_application.hos_app.main_application.MainPatientDashboard">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -111,6 +120,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -219,6 +229,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/navigation_drawer_menu" />
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

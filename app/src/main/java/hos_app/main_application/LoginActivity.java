@@ -1,4 +1,4 @@
-package com.example.main_application;
+package hos_app.main_application;
 
 //import com.apicontroller.ApiService;
 //import com.apicontroller.AuthResponse;
@@ -17,6 +17,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
+
+
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -53,10 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
 
-        nameField = (TextInputEditText)findViewById(R.id.get_name);
-        passField =(TextInputEditText)findViewById(R.id.get_password);
+        nameField = findViewById(R.id.get_name);
+        passField = findViewById(R.id.get_password);
 
-        button = (Button) findViewById(R.id.submit_login);
+        button = findViewById(R.id.submit_login);
 
         button.setOnClickListener(v -> {
 

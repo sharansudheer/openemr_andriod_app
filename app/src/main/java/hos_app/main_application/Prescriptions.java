@@ -1,4 +1,4 @@
-package com.example.main_application;
+package hos_app.main_application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,23 +9,23 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import hos_app.main_application.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Objects;
 
-public class Summary extends AppCompatActivity {
+public class Prescriptions extends AppCompatActivity {
     MaterialToolbar toolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summary);
+        setContentView(R.layout.activity_prescriptions);
         toolBar=findViewById(R.id.topAppBar);
         setSupportActionBar(toolBar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard_menu, menu);
@@ -36,7 +36,7 @@ public class Summary extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home)  {
-            Intent intent = new Intent(Summary.this,MainPatientDashboard.class);
+            Intent intent = new Intent(Prescriptions.this,MainPatientDashboard.class);
             startActivity(intent);
             finish();
             return true;

@@ -1,4 +1,4 @@
-package com.example.main_application;
+package hos_app.main_application;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

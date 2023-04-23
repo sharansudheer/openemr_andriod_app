@@ -1,4 +1,4 @@
-package com.example.main_application;
+package hos_app.main_application;
 
 
 import androidx.annotation.NonNull;
@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import hos_app.main_application.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
@@ -14,10 +16,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import java.util.Objects;
 
@@ -34,7 +41,22 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
 
+        final ImageView launcherIcon = findViewById(R.id.launcher_icon);
+        final Animation blinkAnimation = new AlphaAnimation(1, 0);
+        blinkAnimation.setDuration(500);
+        blinkAnimation.setInterpolator(new LinearInterpolator());
+        blinkAnimation.setRepeatCount(5);
+        blinkAnimation.setRepeatMode(Animation.REVERSE);
+        launcherIcon.startAnimation(blinkAnimation);
 
+        // Delay the transition to the main screen for 3 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                launcherIcon.clearAnimation();
+                launcherIcon.setVisibility(View.GONE);
+            }
+        }, 3000);
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_drawer_view);
         toolBar=findViewById(R.id.topAppBar);
