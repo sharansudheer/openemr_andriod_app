@@ -1,4 +1,4 @@
-package com.example.main_application;
+package hos_app.main_application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,19 +9,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.data.EntityToken;
+import hos_app.main_application.R;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
-public class Allergies extends AppCompatActivity {
+public class Ledger extends AppCompatActivity {
     MaterialToolbar toolBar;
-
-
+    Menu menu;
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_allergies);
+        setContentView(R.layout.activity_ledger);
         toolBar=findViewById(R.id.topAppBar);
         setSupportActionBar(toolBar);
 
@@ -39,7 +40,7 @@ public class Allergies extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home)  {
-            Intent intent = new Intent(Allergies.this,MainPatientDashboard.class);
+            Intent intent = new Intent(Ledger.this,MainPatientDashboard.class);
             startActivity(intent);
             finish();
             return true;
@@ -63,4 +64,7 @@ public class Allergies extends AppCompatActivity {
         setResult(RESULT_OK);
         finish();
     }
+
 }
+
+

@@ -1,7 +1,5 @@
-package com.example.main_application;
+package hos_app.main_application;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,25 +8,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+
+import hos_app.main_application.R;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.navigation.NavigationView;
+//import hos_app.viewadapters.AppointmentAdapter;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Ledger extends AppCompatActivity {
+
+public class Appointments extends AppCompatActivity {
     MaterialToolbar toolBar;
-    Menu menu;
-    NavigationView navigationView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ledger);
+        setContentView(R.layout.activity_appointments);
+
         toolBar=findViewById(R.id.topAppBar);
         setSupportActionBar(toolBar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,7 +46,7 @@ public class Ledger extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home)  {
-            Intent intent = new Intent(Ledger.this,MainPatientDashboard.class);
+            Intent intent = new Intent(Appointments.this,MainPatientDashboard.class);
             startActivity(intent);
             finish();
             return true;
@@ -67,5 +72,3 @@ public class Ledger extends AppCompatActivity {
     }
 
 }
-
-
