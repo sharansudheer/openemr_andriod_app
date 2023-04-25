@@ -12,6 +12,21 @@
         android:theme="@style/Theme.Main_Application.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Doctor_summary"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor_prescription"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor_ledger"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor_appointments"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor_allergies"
+            android:exported="false" />
+        <activity
             android:name=".DoctorDashboard"
             android:exported="false" />
         <activity
@@ -45,8 +60,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:label="@string/dashboard_title"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

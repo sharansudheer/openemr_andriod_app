@@ -30,9 +30,6 @@
     <style name="Widget.Material3.CardView.Elevated" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">4dp</item>
     </style>
-    <style name="SplashTheme" parent="Theme.Material3.DayNight">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
 
 
 

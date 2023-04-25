@@ -35,34 +35,21 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
     MaterialToolbar toolBar;
     Menu menu;
     NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient_dashboard);
 
-        final ImageView launcherIcon = findViewById(R.id.launcher_icon);
-        final Animation blinkAnimation = new AlphaAnimation(1, 0);
-        blinkAnimation.setDuration(500);
-        blinkAnimation.setInterpolator(new LinearInterpolator());
-        blinkAnimation.setRepeatCount(5);
-        blinkAnimation.setRepeatMode(Animation.REVERSE);
-        launcherIcon.startAnimation(blinkAnimation);
 
-        // Delay the transition to the main screen for 3 seconds
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                launcherIcon.clearAnimation();
-                launcherIcon.setVisibility(View.GONE);
-            }
-        }, 3000);
+
+
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_drawer_view);
         toolBar=findViewById(R.id.topAppBar);
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle=new
-        ActionBarDrawerToggle(this,drawerLayout,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        toggle=new ActionBarDrawerToggle(this, drawerLayout, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -134,12 +121,18 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         if (item.getItemId() == R.id.action_logout) {
             logOut();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
 
     private void logOut() {
@@ -163,12 +156,12 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         {super.onBackPressed();
         }
     }
+
     @Override
 
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         int itemId = menuItem.getItemId();
-
 
              if (itemId == R.id.nav_appointments) {
                 Intent intent = new Intent(MainPatientDashboard.this, Appointments.class);
