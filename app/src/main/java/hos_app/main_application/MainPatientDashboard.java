@@ -1,6 +1,8 @@
 package hos_app.main_application;
 
 
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -8,15 +10,25 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import hos_app.main_application.R;
+import hos_app.secrets.secrets;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 
 import android.os.Handler;
+import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,8 +37,19 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.Objects;
+import java.util.Properties;
+import java.sql.*;
+
 
 
 public class MainPatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +82,24 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         navigationView.setCheckedItem(R.id.navigation_drawer_view);
         toolBar=findViewById(R.id.topAppBar);
         setSupportActionBar(toolBar);
+
+        Pair<Connection, String> connectionResult = getRemoteConnection(this);
+        Connection connection = connectionResult.first;
+        String errorMessage = connectionResult.second;
+
+        if (connection != null) {
+            Toast.makeText(MainPatientDashboard.this, "Connection woho", Toast.LENGTH_SHORT).show();
+
+            // You can now use the connection object to interact with the database.
+            // Remember to close the connection when you're done.
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                Toast.makeText(MainPatientDashboard.this, "Nope", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(MainPatientDashboard.this, errorMessage, Toast.LENGTH_LONG).show();
+        }
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -198,8 +239,70 @@ public class MainPatientDashboard extends AppCompatActivity implements Navigatio
         drawerLayout.closeDrawer(GravityCompat.START);
             return true;
     }
+    private KeyStore loadRDSKeyStore(Context context) throws Exception {
+        InputStream inputStream = context.getAssets().open("secrets.rds_ca_2019_root.pem");
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        Certificate ca = cf.generateCertificate(inputStream);
+        inputStream.close();
 
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("ca", ca);
+
+        return keyStore;
+    }
+    private Pair<Connection, String> getRemoteConnection(Context context) {
+        String hostname = secrets.RDS_HOSTNAME;
+        if (hostname != null) {
+            try {
+                // Load SSL certificate
+                KeyStore keyStore = loadRDSKeyStore(context);
+
+                // Initialize SSL context
+                TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                tmf.init(keyStore);
+                TrustManager[] trustManagers = tmf.getTrustManagers();
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, trustManagers, null);
+
+                // Set connection properties
+                Properties props = new Properties();
+                props.setProperty("user", secrets.RDS_USERNAME);
+                props.setProperty("password", secrets.RDS_PASSWORD);
+                props.setProperty("ssl", "true");
+                props.setProperty("sslfactory", "org.postgresql.ssl.DefaultJavaSSLFactory");
+                InputStream inputStream = context.getResources().openRawResource(R.raw.rds_ca_2019_root);
+                if (inputStream != null) {
+                    File tempFile = File.createTempFile("rds_ca_2019_root", ".pem", context.getCacheDir());
+                    try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+                            outputStream.write(buffer, 0, bytesRead);
+                        }
+                    }
+
+                    props.setProperty("sslrootcert", tempFile.getAbsolutePath());
+                    props.setProperty("sslfactory", "org.postgresql.ssl.DefaultJavaSSLFactory");
+                }
+
+                // Connect to the database
+                String jdbcUrl = "jdbc:postgresql://" + hostname + ":" + secrets.RDS_PORT + "/" + secrets.RDS_DB_NAME;
+                Connection con = DriverManager.getConnection(jdbcUrl, props);
+                Log.d("MyTag", "Successful");
+                return new Pair<>(con, null);
+            } catch (Exception e) {
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                String stackTrace = sw.toString();
+                return new Pair<>(null, "Exception: " + e.getMessage() + "\nStack Trace:\n" + stackTrace);
+            }
+        }
+        return new Pair<>(null, "RDS_HOSTNAME not set");
+    }
 }
+
 //nav_login
 //nav_profile
 //nav_logout
