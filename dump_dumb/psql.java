@@ -56,3 +56,16 @@ private Pair<Connection, String> getRemoteConnection(Context context) {
     }
     return new Pair<>(null, "RDS_HOSTNAME not set");
 }
+
+private KeyStore loadRDSKeyStore(Context context) throws Exception {
+    InputStream inputStream = context.getResources().openRawResource(R.raw.rds_ca_2019_root);
+    CertificateFactory cf = CertificateFactory.getInstance("X.509");
+    Certificate ca = cf.generateCertificate(inputStream);
+    inputStream.close();
+
+    KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+    keyStore.load(null, null);
+    keyStore.setCertificateEntry("ca", ca);
+
+    return keyStore;
+}
