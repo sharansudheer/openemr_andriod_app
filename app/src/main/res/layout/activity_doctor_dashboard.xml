@@ -6,14 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
-    tools:context="hos_app.main_application.DoctorDashboard">
+    tools:context=".DoctorDashboard">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -43,71 +40,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.10" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mainCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="30dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="0.95">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/titleTextView"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:text="EDA MYRE"
-                    android:autoSizeTextType="uniform"
-                    android:fontFamily="@font/gilroy_bold"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/dataLine1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date : 20/12/2022"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/dataLine2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reason : Stomach issues"
-                    app:layout_constraintTop_toBottomOf="@+id/dataLine1"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/dataLine3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Doctor : Dr Thomas"
-                    app:layout_constraintTop_toBottomOf="@+id/dataLine2"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/dataLine4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Follow Up : 29/12/2022"
-                    app:layout_constraintTop_toBottomOf="@+id/dataLine3"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
@@ -116,7 +48,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainCard"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
             app:layout_constraintWidth_percent="0.95">
 
             <GridLayout
@@ -124,8 +56,7 @@
                 android:layout_height="wrap_content"
                 android:columnCount="2"
                 android:padding="16dp"
-                android:rowCount="3"
-                >
+                android:rowCount="3">
 
                 <com.google.android.material.button.MaterialButton
 
