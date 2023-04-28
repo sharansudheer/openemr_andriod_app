@@ -74,19 +74,21 @@ public class LoginActivity extends AppCompatActivity {
                     String role = dataSnapshot.child("role").getValue(String.class);
 
                     if (storedPassword != null && storedPassword.equals(password)) {
+
+                        Intent intent;
                         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("isLoggedIn", true);
                         editor.putString("role", role);
                         editor.apply();
 
-                        Intent intent;
                         if ("patient".equals(role)) {
                             intent = new Intent(LoginActivity.this, MainPatientDashboard.class);
                         } else {
-                            intent = new Intent(LoginActivity.this, Ledger.class);
+                            intent = new Intent(LoginActivity.this, DoctorDashboard.class);
                         }
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                     }
@@ -94,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

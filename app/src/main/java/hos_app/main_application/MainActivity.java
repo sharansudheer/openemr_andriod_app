@@ -24,14 +24,21 @@ public class MainActivity extends AppCompatActivity {
         // Check if the user is logged in or not
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        String role = sharedPreferences.getString("role", "");
 
-//         Start the appropriate activity based on the login status
+// Start the appropriate activity based on the login status and role
+
         Intent intent;
         if (isLoggedIn) {
-            intent = new Intent(this, MainPatientDashboard.class);
-            } else {
+            if ("patient".equals(role)) {
+                intent = new Intent(this, MainPatientDashboard.class);
+            } else  {
+                intent = new Intent(this, DoctorDashboard.class); // Use your doctor dashboard activity here
+            }
+        } else {
             intent = new Intent(this, LoginActivity.class);
         }
+
         startActivity(intent);
         finish();
     }
