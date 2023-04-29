@@ -7,13 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -21,7 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -33,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
 
     // code to be executed when button is clicked
     Button button;
-    private DatabaseReference mDatabase;
 
 
     private TextInputEditText passField;
@@ -42,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-        // Initialize FirebaseAuth
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
         nameField = findViewById(R.id.get_name);
         passField = findViewById(R.id.get_password);
         button = findViewById(R.id.submit_login);
@@ -72,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String storedPassword = dataSnapshot.child("password").getValue(String.class);
                     String role = dataSnapshot.child("role").getValue(String.class);
+                    String practitionerName = dataSnapshot.getKey();
+
+
 
                     if (storedPassword != null && storedPassword.equals(password)) {
 
@@ -80,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("isLoggedIn", true);
                         editor.putString("role", role);
+                        editor.putString("practitionerName", practitionerName);
                         editor.apply();
 
                         if ("patient".equals(role)) {

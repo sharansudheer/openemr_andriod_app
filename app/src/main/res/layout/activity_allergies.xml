@@ -26,66 +26,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
+            tools:listitem="@layout/allergy_card_item" />
+
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
+            android:id="@+id/guideline8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.10" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mainCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:layout_constraintWidth_percent="0.95">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-
-                <TextView
-                    android:id="@+id/dataLine1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date : 20/12/2022"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/dataLine2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Allergies : Shell Fish"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dataLine1" />
-
-                <TextView
-                    android:id="@+id/dataLine3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Doctor : Dr Thomas"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dataLine2" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-
-
+            app:layout_constraintGuide_percent="0.10"  />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
