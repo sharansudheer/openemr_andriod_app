@@ -8,14 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-
-import hos_app.main_application.R;
 import com.google.android.material.appbar.MaterialToolbar;
-//import hos_app.viewadapters.AppointmentAdapter;
-
-import java.util.List;
 import java.util.Objects;
 
 
