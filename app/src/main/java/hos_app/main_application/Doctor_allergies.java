@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,12 +25,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 public class Doctor_allergies extends AppCompatActivity {
 
     MaterialToolbar toolBar;
+    TextView selectedDate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,15 @@ public class Doctor_allergies extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        selectedDate = findViewById(R.id.selected_date);
+
+        findViewById(R.id.show_date_picker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMaterialDatePicker();
+            }
+        });
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
@@ -122,6 +140,27 @@ public class Doctor_allergies extends AppCompatActivity {
         startActivity(intent);
         setResult(RESULT_OK);
         finish();
+    }
+
+    private void showMaterialDatePicker() {
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select a date");
+
+        // Optional: Setting CalendarConstraints to disable past dates
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        constraintsBuilder.setValidator(DateValidatorPointForward.now());
+        builder.setCalendarConstraints(constraintsBuilder.build());
+
+        MaterialDatePicker<Long> picker = builder.build();
+
+        picker.addOnPositiveButtonClickListener(selection -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            String formattedDate = sdf.format(selection);
+            selectedDate.setText(formattedDate);
+        });
+
+        picker.show(getSupportFragmentManager(), picker.toString());
     }
 
 
