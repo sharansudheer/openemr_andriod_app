@@ -51,15 +51,15 @@ public class Doctor_allergies extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        selectedDate = findViewById(R.id.selected_date);
+        selectedDate = findViewById(R.id.get_date);
 
-        findViewById(R.id.show_date_picker).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMaterialDatePicker();
-            }
-        });
-
+//        findViewById(R.id.).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showMaterialDatePicker();
+//            }
+//        });
+//
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
 
@@ -162,6 +162,12 @@ public class Doctor_allergies extends AppCompatActivity {
 
         picker.show(getSupportFragmentManager(), picker.toString());
     }
+
+    @Override
+    public void onBackPressed() {
+        // Your custom behavior, e.g., show a confirmation dialog or navigate to a specific screen
+    }
+
 
 
 }

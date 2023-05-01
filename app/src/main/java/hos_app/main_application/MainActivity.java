@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             } else  {
                 intent = new Intent(this, DoctorDashboard.class); // Use your doctor dashboard activity here
             }
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
