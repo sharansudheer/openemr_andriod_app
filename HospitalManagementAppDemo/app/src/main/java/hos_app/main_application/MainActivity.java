@@ -1,19 +1,12 @@
 package hos_app.main_application;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import hos_app.secrets.secrets;
 
 public class MainActivity extends AppCompatActivity {
 

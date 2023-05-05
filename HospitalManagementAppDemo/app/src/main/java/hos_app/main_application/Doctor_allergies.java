@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,16 +23,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.HashMap;
-import java.util.Locale;
+
 import java.util.Map;
 import java.util.Objects;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.DateValidatorPointForward;
 
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 public class Doctor_allergies extends AppCompatActivity {
 
     MaterialToolbar toolBar;
@@ -51,20 +47,35 @@ public class Doctor_allergies extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        selectedDate = findViewById(R.id.get_date);
+        MaterialDatePicker.Builder<Long> datePickerBuilder = MaterialDatePicker.Builder.datePicker();
+        datePickerBuilder.setTitleText("Select date");
+        MaterialDatePicker<Long> datePicker = datePickerBuilder.build();
+        TextInputEditText getDateEditText = findViewById(R.id.get_date);
 
-//        findViewById(R.id.).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showMaterialDatePicker();
-//            }
-//        });
-//
+        getDateEditText.setOnClickListener(v -> {
+            datePicker.show(getSupportFragmentManager(), datePicker.getTag());
+        });
+
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            // Convert the date to a formatted string and set it as the text of the TextInputEditText
+            String selectedDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(selection);
+            getDateEditText.setText(selectedDate);
+        });
+
+        datePicker.addOnNegativeButtonClickListener(v -> {
+            // Handle negative button click, e.g., dismiss the picker
+            datePicker.dismiss();
+        });
+
+        datePicker.addOnCancelListener(dialog -> {
+            // Handle cancel event, e.g., show a toast or perform other actions
+            Toast.makeText(Doctor_allergies.this, "Date selection canceled", Toast.LENGTH_SHORT).show();
+        });
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
 
         EditText getAllergyEditText = findViewById(R.id.get_allergy);
-        EditText getDateEditText = findViewById(R.id.get_date);
         Button submitAllergiesButton = findViewById(R.id.submit_allergies);
         String practitionerName = sharedPreferences.getString("practitionerName", "");
         TextInputEditText getPractitionerEditText = findViewById(R.id.get_practitioner);
@@ -142,26 +153,7 @@ public class Doctor_allergies extends AppCompatActivity {
         finish();
     }
 
-    private void showMaterialDatePicker() {
-        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Select a date");
 
-        // Optional: Setting CalendarConstraints to disable past dates
-        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
-        constraintsBuilder.setValidator(DateValidatorPointForward.now());
-        builder.setCalendarConstraints(constraintsBuilder.build());
-
-        MaterialDatePicker<Long> picker = builder.build();
-
-        picker.addOnPositiveButtonClickListener(selection -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-            String formattedDate = sdf.format(selection);
-            selectedDate.setText(formattedDate);
-        });
-
-        picker.show(getSupportFragmentManager(), picker.toString());
-    }
 
     @Override
     public void onBackPressed() {
