@@ -37,6 +37,7 @@ node_modules/**
 *.iml
 .DS_Store
 .DS_Store?
-Secrets.java
+secrets.java
+google-services.json
 
 
