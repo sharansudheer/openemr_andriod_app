@@ -141,14 +141,17 @@ public class DoctorDashboard extends AppCompatActivity  implements NavigationVie
     }
 
     @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {super.onBackPressed();
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
     }
+
 
     @Override
 
@@ -191,5 +194,6 @@ public class DoctorDashboard extends AppCompatActivity  implements NavigationVie
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 }
