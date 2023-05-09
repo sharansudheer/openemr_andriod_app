@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -63,43 +63,28 @@ public class DoctorDashboard extends AppCompatActivity  implements NavigationVie
 
 
         // Set up the onClickListeners
-        buttonAppointments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorDashboard.this, Doctor_appointments.class);
-                startActivity(intent);
-            }
+        buttonAppointments.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDashboard.this, Doctor_appointments.class);
+            startActivity(intent);
         });
 
-        buttonSummary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorDashboard.this, Doctor_summary.class);
-                startActivity(intent);
-            }
+        buttonSummary.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDashboard.this, Doctor_summary.class);
+            startActivity(intent);
         });
 
-        buttonLedger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorDashboard.this, Doctor_ledger.class);
-                startActivity(intent);
-            }
+        buttonLedger.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDashboard.this, Doctor_ledger.class);
+            startActivity(intent);
         });
 
-        buttonPrescriptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorDashboard.this, Doctor_prescription.class);
-                startActivity(intent);
-            }
+        buttonPrescriptions.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDashboard.this, Doctor_prescription.class);
+            startActivity(intent);
         });
-        buttonAllergies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorDashboard.this, Doctor_allergies.class);
-                startActivity(intent);
-            }
+        buttonAllergies.setOnClickListener(v -> {
+            Intent intent = new Intent(DoctorDashboard.this, Doctor_allergies.class);
+            startActivity(intent);
         });
 
 
@@ -145,10 +130,7 @@ public class DoctorDashboard extends AppCompatActivity  implements NavigationVie
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            finishAffinity();
         }
     }
 
