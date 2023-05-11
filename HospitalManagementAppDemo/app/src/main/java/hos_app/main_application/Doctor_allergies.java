@@ -2,7 +2,7 @@ package hos_app.main_application;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,7 +32,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 public class Doctor_allergies extends AppCompatActivity {
 
     MaterialToolbar toolBar;
-    TextView selectedDate;
+
 
 
     @Override
@@ -52,25 +51,16 @@ public class Doctor_allergies extends AppCompatActivity {
         MaterialDatePicker<Long> datePicker = datePickerBuilder.build();
         TextInputEditText getDateEditText = findViewById(R.id.get_date);
 
-        getDateEditText.setOnClickListener(v -> {
-            datePicker.show(getSupportFragmentManager(), datePicker.getTag());
-        });
+        getDateEditText.setOnClickListener(v -> datePicker.show(getSupportFragmentManager(), datePicker.getTag()));
 
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            // Convert the date to a formatted string and set it as the text of the TextInputEditText
             String selectedDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(selection);
             getDateEditText.setText(selectedDate);
         });
 
-        datePicker.addOnNegativeButtonClickListener(v -> {
-            // Handle negative button click, e.g., dismiss the picker
-            datePicker.dismiss();
-        });
+        datePicker.addOnNegativeButtonClickListener(v -> datePicker.dismiss());
 
-        datePicker.addOnCancelListener(dialog -> {
-            // Handle cancel event, e.g., show a toast or perform other actions
-            Toast.makeText(Doctor_allergies.this, "Date selection canceled", Toast.LENGTH_SHORT).show();
-        });
+        datePicker.addOnCancelListener(dialog -> Toast.makeText(Doctor_allergies.this, "Date selection canceled", Toast.LENGTH_SHORT).show());
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
@@ -82,36 +72,33 @@ public class Doctor_allergies extends AppCompatActivity {
 
         getPractitionerEditText.setText(practitionerName);
         getPractitionerEditText.setEnabled(false);
-        submitAllergiesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String allergy = getAllergyEditText.getText().toString().trim();
-                String date = getDateEditText.getText().toString().trim();
-                String practitionerName = sharedPreferences.getString("practitionerName", "");
-                // Proceed with saving the data to Firebase
-                DatabaseReference userAllergiesRef = FirebaseDatabase.getInstance().getReference("users/Phillip Andrews/allergies");
-                Map<String, Object> allergyData = new HashMap<>();
-                allergyData.put("Allergy", allergy);
-                allergyData.put("Practitioner", practitionerName);
+        submitAllergiesButton.setOnClickListener(v -> {
+            //MAKE SURE THAT ALL THE FIELDS ARE NOT NULL ELSE DON'T ACCEPT THE INPUT
+            // FIX NO NETWORK ISSUE, IF NO NETWORK, DON'T OPEN THE APP
+            //
+            //
+            //
+            ////
+            String allergy = getAllergyEditText.getText().toString().trim();
+            String date = Objects.requireNonNull(getDateEditText.getText()).toString().trim();
+            String practitionerName1 = sharedPreferences.getString("practitionerName", "");
+            // Proceed with saving the data to Firebase
+            DatabaseReference userAllergiesRef = FirebaseDatabase.getInstance().getReference("users/Phillip Andrews/allergies");
+            Map<String, Object> allergyData = new HashMap<>();
+            allergyData.put("Allergy", allergy);
+            allergyData.put("Practitioner", practitionerName1);
 
-                userAllergiesRef.child(date).setValue(allergyData)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Handle success, e.g., show a success message or update the UI
-                                getAllergyEditText .setText("");
-                                getDateEditText.setText("");
-                                Toast.makeText(getApplicationContext(), "Allergy data saved successfully!", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Handle failure, e.g., show an error message
-                                Toast.makeText(getApplicationContext(), "Error saving allergy data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+            userAllergiesRef.child(date).setValue(allergyData)
+                    .addOnSuccessListener(aVoid -> {
+                        // Handle success, e.g., show a success message or update the UI
+                        getAllergyEditText .setText("");
+                        getDateEditText.setText("");
+                        Toast.makeText(getApplicationContext(), "Allergy data saved successfully!", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle failure, e.g., show an error message
+                        Toast.makeText(getApplicationContext(), "Error saving allergy data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         });
 
     }
