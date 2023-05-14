@@ -32,8 +32,6 @@ public class Doctor_allergies extends AppCompatActivity {
 
     MaterialToolbar toolBar;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +56,9 @@ public class Doctor_allergies extends AppCompatActivity {
         });
 
         datePicker.addOnNegativeButtonClickListener(v -> datePicker.dismiss());
-
         datePicker.addOnCancelListener(dialog -> Toast.makeText(Doctor_allergies.this, "Date selection canceled", Toast.LENGTH_SHORT).show());
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
-
         EditText getAllergyEditText = findViewById(R.id.get_allergy);
         Button submitAllergiesButton = findViewById(R.id.submit_allergies);
         String practitionerName = sharedPreferences.getString("practitionerName", "");
@@ -72,6 +67,7 @@ public class Doctor_allergies extends AppCompatActivity {
         getPractitionerEditText.setText(practitionerName);
         getPractitionerEditText.setEnabled(false);
         submitAllergiesButton.setOnClickListener(v -> {
+            //TODO
             //MAKE SURE THAT ALL THE FIELDS ARE NOT NULL ELSE DON'T ACCEPT THE INPUT
             // FIX NO NETWORK ISSUE, IF NO NETWORK, DON'T OPEN THE APP
             //
@@ -89,7 +85,6 @@ public class Doctor_allergies extends AppCompatActivity {
 
             userAllergiesRef.child(date).setValue(allergyData)
                     .addOnSuccessListener(aVoid -> {
-                        // Handle success, e.g., show a success message or update the UI
                         getAllergyEditText .setText("");
                         getDateEditText.setText("");
                         Toast.makeText(getApplicationContext(), "Allergy data saved successfully!", Toast.LENGTH_SHORT).show();
