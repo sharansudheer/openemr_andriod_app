@@ -9,17 +9,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class Doctor_prescription extends AppCompatActivity {
+import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.Objects;
+
+public class Doctor_prescription extends AppCompatActivity {
+    MaterialToolbar toolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_prescription);
+        toolBar=findViewById(R.id.topAppBar);
+        setSupportActionBar(toolBar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home)  {
-            Intent intent = new Intent(Doctor_ledger.this,DoctorDashboard.class);
+            Intent intent = new Intent(Doctor_prescription.this,DoctorDashboard.class);
             startActivity(intent);
             finish();
             return true;

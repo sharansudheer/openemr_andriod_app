@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                app:title="Admin - Allergy Entry"
+                app:title="Admin - Prescription Entry"
                 app:menu="@menu/dashboard_menu"
                 />
         </com.google.android.material.appbar.AppBarLayout>
@@ -77,7 +77,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="@color/white"
                 android:focusable="true"
-                android:hint="@string/enter_allergy"
+                android:hint="@string/enter_pres"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColor="@color/black"
