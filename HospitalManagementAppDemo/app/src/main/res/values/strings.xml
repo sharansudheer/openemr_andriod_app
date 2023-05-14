@@ -36,6 +36,7 @@
     <string name="enter_allergy">Enter The Allergy</string>
     <string name="practitioner_name">Practitioner Name</string>
     <string name="submit">SUBMIT</string>
+    <string name="enter_pres">Enter the Prescription</string>
 
 
 </resources>
